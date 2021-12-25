@@ -1,0 +1,185 @@
+:root {
+    --color-txt: white;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+/*giving size to the image*/
+img{
+    width: 20%;
+}
+
+/* making of the navcontainer container*/
+.netflixFrontContainer{
+    display: flex;  
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+
+/*styling the sign up button*/
+.signupBtn{
+    font-size: 160%;
+    border-radius: 5px;
+    background-color: red;
+    color: var(--color-txt);
+    padding: 6px;
+}
+/* styling the front  big image*/
+.frontImg{
+    position: relative;
+    text-align: center;
+}
+
+/* giving correct position to the text on the image*/
+.frontText{
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);   
+    width: 100%;
+    text-align: center;
+}
+
+
+/* giving color to the text on the image*/
+.frontText span{
+    color: var(--color-txt);    
+}
+
+/*styling the get started button */
+.frontBtn{
+    position: absolute;
+    top: 80%;
+    left: 43%;
+    width: 100%;
+}
+.frontBtn a{
+    background-color: red;
+    color: var(--color-txt);
+    padding: 1.5rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    font-size: 190%;
+    font-weight: bold;
+    text-decoration: none;
+    
+}
+
+/*styliny all the text*/
+.text1,.text2{
+    font-weight: bold;
+}
+
+.text1{
+    font-size: 390%;
+    padding-left: 3%;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.text2{
+    font-size: 370%;
+    padding-left: 6%;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.text3{
+    font-size: 170%;
+    padding-left: 8%;
+    font-weight: bold;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+/* for  small laptops*/
+ @media all and (max-width: 1240px) {
+
+    .frontText{
+        top: 50%; 
+    }
+    .frontBtn{
+        top:75%;
+        left: 40%;
+    }
+  
+    .netflixNav{
+        display: inline;
+    }
+    .signupBtn{
+        padding:4px;
+    }
+}
+
+@media all and (max-width: 960px) {
+
+  
+    .frontBtn{
+        
+        left: 38%;
+    }
+  
+    
+}
+
+
+
+@media screen and (max-width: 870px) {
+    .frontText{
+        top: 40%;
+    }
+    .frontBtn{
+        top:60%;
+        left: 40%;
+    }
+    .frontBtn a{
+        font-size: 135%;
+    }
+  
+}
+@media screen and (max-width: 770px) {
+    .frontText{
+        top: 30%;
+    }
+    .frontBtn{
+        top:45%;
+        left: 35%;
+    }
+    .frontBtn a{
+        font-size: 110%;
+    }
+    .text1{
+        font-size: 280%;
+
+    }
+    .text2{
+        font-size: 250%;
+    }
+    .text3{
+        font-size: 130%;   
+    }
+   
+}
+@media screen and (max-width: 528px) {
+    .frontText{
+        top: 23%;
+    }
+    .frontBtn{
+        top:36%;
+        left: 38%;
+    }
+    .frontBtn a{
+        font-size: 110%;
+        padding: 1.2rem;
+    }
+    .text1{
+        font-size: 210%;
+
+    }
+    .text2{
+        font-size: 190%;
+    }
+    .text3{
+        font-size: 80%;   
+    }
+}

@@ -1,18 +1,26 @@
+<?php $root_url=\application\core\Config::get('URL');?>
 
 <!doctype html>
 <html>
 <head>
-    <title>Stock Market</title>
+    <title>Netflix Clone</title>
     <!-- META -->
     <meta charset="utf-8">
     <!-- send empty favicon fallback to prevent user's browser hitting the server for lots of favicon requests resulting in 404s -->
     <link rel="icon" href="data:;base64,=">
-    <link href="http://127.0.0.1:8080/php/NETFLIX_CLONE/assets/css/index.css" rel="stylesheet">
-    <script src="http://127.0.0.1:8080/php/NETFLIX_CLONE/assets/js/index.js"></script>
+    <link href="<?= $root_url?>assets/css/index.css" rel="stylesheet">
+    <script src="<?= $root_url?>assets/js/index.js"></script>
+    <script src="<?= $root_url?>assets/js/jquery.min.js"></script>
     
-
-    <!-- JavaScript Bundle with Popper -->
-
 </head>
-
-<body style="background-color: rgba(213, 251, 253);">
+<body>
+    <div class="netflixFrontContainer">
+        <div class="netflixLogo">
+            <img src="<?= $root_url?>assets/img/netflxLogo.jpg" alt="" >
+        </div>
+        <nav class="netflixNav">
+            <div class="signup">
+                <a class="signupBtn">Sign_in</a>
+            </div>
+        </nav>   
+    </div>
