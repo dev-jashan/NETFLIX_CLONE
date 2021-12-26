@@ -31,9 +31,23 @@ class View{
             }
         }
 
-        require Config::get('PATH_VIEW') . 'templates/plan-head.php';
+        require Config::get('PATH_VIEW') . 'template/plan-head.php';
         require Config::get('PATH_VIEW') . $filename . '.php';
-        require Config::get('PATH_VIEW') . 'templates/plan-foot.php';
+        require Config::get('PATH_VIEW') . 'template/plan-foot.php';
+    }
+
+    // it will render the checkout page
+    public function renderCheckout($filename, $data = null)                     
+    {
+        if ($data) {
+            foreach ($data as $key => $value) {
+                $this->{$key} = $value;
+            }
+        }
+
+        require Config::get('PATH_VIEW') . 'template/checkout-head.php';
+        require Config::get('PATH_VIEW') . $filename . '.php';
+        require Config::get('PATH_VIEW') . 'template/checkout-foot.php';
     }
 
 }

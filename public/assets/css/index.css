@@ -1,5 +1,12 @@
+/* to create css variables */
 :root {
     --color-txt: white;
+    --btn-color:red;
+}
+
+html
+{
+    overflow-x: hidden;
 }
 * {
     box-sizing: border-box;
@@ -16,7 +23,8 @@ img{
     display: flex;  
     justify-content: space-between;
     align-items: center;
-    
+    width: 100%;
+   
 }
 
 
@@ -24,7 +32,7 @@ img{
 .signupBtn{
     font-size: 160%;
     border-radius: 5px;
-    background-color: red;
+    background-color: var(--btn-color);
     color: var(--color-txt);
     padding: 6px;
 }
@@ -58,7 +66,7 @@ img{
     width: 100%;
 }
 .frontBtn a{
-    background-color: red;
+    background-color: var(--btn-color);
     color: var(--color-txt);
     padding: 1.5rem;
     padding-left: 4rem;
@@ -92,7 +100,9 @@ img{
     font-weight: bold;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-/* for  small laptops*/
+
+
+/* to make it compatible for tablet, small screen laptops and large screen laptops*/
  @media all and (max-width: 1240px) {
 
     .frontText{
@@ -113,18 +123,13 @@ img{
 
 @media all and (max-width: 960px) {
 
-  
     .frontBtn{
         
         left: 38%;
-    }
-  
-    
+    }    
 }
 
-
-
-@media screen and (max-width: 870px) {
+@media screen and (max-width: 890px) {
     .frontText{
         top: 40%;
     }
@@ -134,8 +139,7 @@ img{
     }
     .frontBtn a{
         font-size: 135%;
-    }
-  
+    }  
 }
 @media screen and (max-width: 770px) {
     .frontText{
@@ -160,7 +164,8 @@ img{
     }
    
 }
-@media screen and (max-width: 528px) {
+
+@media screen and (max-width: 540px) {
     .frontText{
         top: 23%;
     }

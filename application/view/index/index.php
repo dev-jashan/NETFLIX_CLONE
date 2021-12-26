@@ -9,8 +9,12 @@
             <span class="text3">Watch anywhere.Cancel anytime</span>
         </div>
         <div class="frontBtn">
-            <a href="">Get Started ></a>
+            <a href="<?= $root_url?>plan/index">Get Started ></a>
         </div>
     </div>
 </div>
-
+<div class="frontLower">
+    <img src="<?= $root_url?>assets/img/netflix_col1.png" alt="" style="width: 100%; ">
+    <img src="<?= $root_url?>assets/img/netflix_col2.png" alt="" style="width: 100%; ">
+    <img src="<?= $root_url?>assets/img/netflix_col3.png" alt="" style="width: 100%; ">
+</div>
