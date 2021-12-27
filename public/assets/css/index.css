@@ -1,7 +1,7 @@
 /* to create css variables */
 :root {
     --color-txt: white;
-    --btn-color:red;
+    --btn-color:rgba(185, 3, 3, 0.952);
 }
 
 html
@@ -117,8 +117,11 @@ img{
         display: inline;
     }
     .signupBtn{
-        padding:4px;
+        padding:8px;
+        font-size: 100%;
+        font-family: Arial, Helvetica, sans-serif;
     }
+    
 }
 
 @media all and (max-width: 960px) {

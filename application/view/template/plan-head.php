@@ -11,7 +11,7 @@
     <link href="<?= $root_url?>assets/css/index.css" rel="stylesheet">
     <script src="<?= $root_url?>assets/js/plan.js"></script>
     <script src="<?= $root_url?>assets/js/jquery.min.js"></script>
-    <link href="<?= $root_url?>assets/css/register.css" rel="stylesheet">
+    <link href="<?= $root_url?>assets/css/plan.css" rel="stylesheet">
     
 </head>
 <body style="background-color: black;">

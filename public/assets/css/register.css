@@ -1,63 +1,38 @@
-:root{
-    --flex-dispaly:flex;
-    --full-width:100%;
-    --option-padding:3%;
-}
-
-/* setting styles for all the plan containers*/
-.allPlans{
-    margin-top: 5%;
-}
-.planContainer{
-    
-    display: var(--flex-dispaly);
+.registerContainer{
+    width: 40%;
     margin: auto;
-    width: 70%;
-    margin-bottom: 2%;
-    
+}
+h1{
+    font-family:Arial, Helvetica, sans-serif;
+    margin-bottom: 4%;
+}
+.col-50 p{
+    margin-bottom: 3%;
+    font-family:Arial, Helvetica, sans-serif;
 }
 
-.basicPlan{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width:var(--full-width);
-    flex-wrap:wrap;
-    padding: var(--option-padding);
-    
-}
-
-.basicPlan ul{
-   
-    color: rgb(0, 190, 0);
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-.basicPlan label{
-    color: red;
-    font-weight: bolder;
-    font-size: large;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-.basicPlan input{
-    height:20px;
-     width:20px; 
-     vertical-align: middle;
-}
-
-/* styling the button for the plans*/
-.planBtn{
+.nextBtnContainer{
  
-  display: grid; 
-  display: 50%; 
-  
+    display: grid; 
+    display: 50%; 
+    
 }
-.planBtn button{
+.nextBtnContainer button{
     background-color: red;
     color: white;  
-    width: 20%;
-    padding: 1%;
+    width: 97%;
+    padding: 2%;
     margin: auto;
     font-weight: bolder;
     font-size: 150%;
-    margin-bottom: 5%;
+    margin-top: 5%;
+    border-radius: 5px;
 }
+input[type=email], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }

@@ -11,27 +11,33 @@
             // get the value of the radio button
             let radio=document.querySelectorAll('input[name="choice"]');;
             console.log(radio);
+            let planArr=[];
             for (const rb of radio) {
                 if (!rb.checked) {
                     console.log('false');
                 }else if(rb.checked){
-                    console.log('true btn');
-                    console.log(rb.value);
+                    planArr.push(rb.value);
+                    localStorage.setItem('plan', planArr); 
+
                     window.history.forward();
-                    window.location.replace('http://127.0.0.1:8080/php/NETFLIX_CLONE/checkout/index');
+
+                    $(function(){
+                        $("body").fadeOut(1000,function(){
+                            window.location.replace('http://127.0.0.1:8080/php/NETFLIX_CLONE/register/index');
+                        })
+                    });                            
                 }
             }
         });
     }
-    function init(){
-        
+
+    function init(){    
         setEventListeners();
+        $(function(){
+            $("body").hide();
+            $("body").fadeIn(1000);
+        })
     }
-    
-
-
-
-
     document.addEventListener("DOMContentLoaded", function (){
         init();
     });

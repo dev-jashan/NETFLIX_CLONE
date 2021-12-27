@@ -13,10 +13,34 @@
     <script src="<?= $root_url?>assets/js/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="<?= $root_url?>assets/css/checkout.css" rel="stylesheet">
-    
-</head>
-<body style="background-color: white;">
+    <style>
+        /* this is the loading of the netflix app*/ 
+        .spinner:before {
+            content: "";
+            box-sizing: border-box;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 80px;
+            height: 80px;
+            margin-top: -30px;
+            margin-left: -30px;
+            border-radius: 50%;
+            border-top: 5px solid red;
+            border-right: 5px solid transparent;
+            animation: spinner 1s linear infinite;
+        }
 
+        @keyframes spinner {
+        to {
+            transform: rotate(360deg);
+        }
+        }
+
+    </style>
+</head>
+<body style="background-color: white;" class="body">
+<div class="loader"></div>
 <div class="netflixFrontContainer">
         <div class="netflixLogo">
             <img src="<?= $root_url?>assets/img/netflxLogo.jpg" alt="" width="100%">
@@ -27,3 +51,4 @@
             </div>
         </nav>   
     </div>
+    

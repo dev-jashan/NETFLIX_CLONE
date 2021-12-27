@@ -8,7 +8,7 @@ require_once '..\application\core\Config.php';
 
 class View{
 
-    // this will show the entry page of the NETFLIX                                                          
+    // to show the first or entry page of the app                                                          
     public function renderIndex($filename, $data = null)                   
     {
         if ($data) {
@@ -22,7 +22,7 @@ class View{
         require Config::get('PATH_VIEW') . 'template/index-foot.php';
     }
 
-    // this will all the plans to the user NETFLIX 
+    // to show all the netflix page
     public function renderPlan($filename, $data = null)                     
     {
         if ($data) {
@@ -36,7 +36,21 @@ class View{
         require Config::get('PATH_VIEW') . 'template/plan-foot.php';
     }
 
-    // it will render the checkout page
+    // to show the registeration page
+    public function renderRegister($filename, $data = null)                     
+    {
+        if ($data) {
+            foreach ($data as $key => $value) {
+                $this->{$key} = $value;
+            }
+        }
+
+        require Config::get('PATH_VIEW') . 'template/register-head.php';
+        require Config::get('PATH_VIEW') . $filename . '.php';
+        require Config::get('PATH_VIEW') . 'template/register-foot.php';
+    }
+
+    // to show the checkout page
     public function renderCheckout($filename, $data = null)                     
     {
         if ($data) {

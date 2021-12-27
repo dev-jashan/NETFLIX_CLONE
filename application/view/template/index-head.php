@@ -15,14 +15,13 @@
 </head>
 <body>
     
-
     <div class="netflixFrontContainer">
         <div class="netflixLogo">
             <img src="<?= $root_url?>assets/img/netflxLogo.jpg" alt="" width="100%">
         </div>
         <nav class="netflixNav">
             <div class="signup">
-                <a class="signupBtn">Sign_in</a>
+                <a href="<?= $root_url?>login/index" class="signupBtn">Sign.in</a>
             </div>
         </nav>   
     </div>
