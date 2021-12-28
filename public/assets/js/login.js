@@ -57,14 +57,51 @@
 
     // to send signup  data to ajax
     function sendSignupData(){    
+
         let enableBtn=document.getElementById('nextbtn');        
+
             enableBtn.addEventListener("click", function() {
+
+                // get the form data
+                let userDataArr=[];
                 let sendEmail = document.getElementById("email").value;
                 let sendPass = document.getElementById("pass").value;
+                let userError=document.getElementById('userError');
+
+                userDataArr.push(sendEmail,sendPass);
+                let userData = JSON.stringify(userDataArr);
+
                 console.log('the button is enabled');
                 console.log(sendEmail);
                 console.log(sendPass);          
-                window.history.forward();      
+                window.history.forward();    
+                $.ajax({
+        
+                    type: "POST",
+                    url: 'http://127.0.0.1:8080/php/NETFLIX_CLONE/login/loginUser',
+                    data: {loginData : userData},
+                    success: function(data){
+                        console.log(data)
+                        if(data=='true'){
+                            document.querySelector(".registerContainer").style.display = "none";
+                            document.querySelector(".netflixFrontContainer").style.display = "none";
+                            document.querySelector(".loader").classList.add("spinner");
+                            document.querySelector(".body").style.backgroundColor = "black";
+                            if(data){
+                                setTimeout(() => {
+                                    window.location.replace('http://127.0.0.1:8080/php/NETFLIX_CLONE/main/index');
+                                },3000);
+                                
+                            } 
+                        }else if(data=='false'){
+                            userError.style.display='block';
+                        }   
+                    
+                    },
+                    error: function(xhr, status, error){
+                        console.error(xhr);
+                    }
+                });  
             });        
     }
     

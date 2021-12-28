@@ -47,29 +47,59 @@ $(function(){
 
     // to send registeration data to ajax
     function sendRegisteration(){    
-        let enaBtn=document.getElementById('nextbtn');        
-            enaBtn.addEventListener("click", function() {
-                let sendEmail = document.getElementById("email").value;
-                let sendPass = document.getElementById("pass").value;
-                console.log('the button is enabled');
-                console.log(sendEmail);
-                console.log(sendPass);  
+        let userDataArr=[];
+        let enaBtn=document.getElementById('nextbtn');   
 
-                localStorage.setItem('email',sendEmail);
-                localStorage.setItem('pass',sendPass);
+        enaBtn.addEventListener("click", function() {
 
-                window.history.forward();
+            // get the email and password from the inpu field
+            let sendEmail = document.getElementById("email").value;
+            let sendPass = document.getElementById("pass").value;
 
-                $(function(){
-                    $("body").fadeOut(1000,function(){
-                        window.location.replace('http://127.0.0.1:8080/php/NETFLIX_CLONE/checkout/index');
-                    })
-                }); 
-                
-            });        
+            // to get the user error div
+            let userError=document.getElementById('userErrorContainer');
+
+            // to send the data to differnt files of javascript
+            localStorage.setItem('email',sendEmail);
+            localStorage.setItem('pass',sendPass);
+            
+            userDataArr.push(sendEmail,sendPass);
+            let userData = JSON.stringify(userDataArr);
+
+            window.history.forward();
+
+            // send email and password to php file to validate the email 
+            $.ajax({
+        
+                type: "POST",
+                url: 'http://127.0.0.1:8080/php/NETFLIX_CLONE/register/getUserData',
+                data: {checkData : userData},
+                success: function(data){
+                    console.log(data)   
+
+                    //to check if the email already exist in the database
+                    if(data=='true'){
+                        userError.style.display="block";
+                        $("body").fadeOut(5000,function(){
+                            window.location.replace('http://127.0.0.1:8080/php/NETFLIX_CLONE/register/index');
+                        })
+                            
+                    }else if(data=='false'){
+
+                        $(function(){
+                            $("body").fadeOut(1000,function(){
+                                window.location.replace('http://127.0.0.1:8080/php/NETFLIX_CLONE/checkout/index');
+                            })
+                        }); 
+                    }
+                },
+                error: function(xhr, status, error){
+                    console.error(xhr);
+                }
+            });
+        });        
     }
     
-
     sendRegisteration();
     
    

@@ -77,4 +77,18 @@ class View{
         require Config::get('PATH_VIEW') . $filename . '.php';
         require Config::get('PATH_VIEW') . 'template/login-foot.php';
     }
+
+    //to show main netfix page
+    public function renderMain($filename, $data = null)                     
+    {
+        if ($data) {
+            foreach ($data as $key => $value) {
+                $this->{$key} = $value;
+            }
+        }
+
+        require Config::get('PATH_VIEW') . 'template/main-head.php';
+        require Config::get('PATH_VIEW') . $filename . '.php';
+        require Config::get('PATH_VIEW') . 'template/main-foot.php';
+    }
 }

@@ -60,25 +60,27 @@
             console.log(userDataArr);
             let userData = JSON.stringify(userDataArr);
 
-            //using AJAX
+            //using AJAX to send all the user data 
             $.ajax({
             
                 type: "POST",
                 url: 'http://127.0.0.1:8080/php/NETFLIX_CLONE/register/getUserData',
                 data: {data : userData},
                 success: function(data){
-                 console.log(data);
-
-                 // when data is received then redirect user to the main page with the laoding animation
-                 if(data){
-                 setTimeout(() => {
+                    console.log(data);
+                    //loading animation
                     document.querySelector(".checkoutContainer").style.display = "none";
                     document.querySelector(".netflixFrontContainer").style.display = "none";
                     document.querySelector(".loader").classList.add("spinner");
                     document.querySelector(".body").style.backgroundColor = "black";
-                    
-                  },2000);
-                }
+
+                    // when data is received then redirect user to the main page
+                    if(data){
+                        setTimeout(() => {
+                            window.location.replace('http://127.0.0.1:8080/php/NETFLIX_CLONE/main/index');
+                        },3000);
+                        
+                    } 
                 },
                 error: function(xhr, status, error){
                     console.error(xhr);

@@ -3,6 +3,9 @@
         <h1>Create a password to start your membership</h1>
         <p>just few more steps and you're done!</p>
         <p>we hate paperwork,too.</p>
+        <div class="userErrorContainer" id="userErrorContainer" style="display: none;">
+            <p class="userError">It seems like this username already exists <span>!!</span></p>
+        </div>
         
         <span id="lblError" style="color: red"></span>
         <input type="email" id="email" name="email" placeholder="Email" onkeyup="registerValidation();">
