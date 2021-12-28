@@ -22,7 +22,7 @@
         </div>
         <nav class="netflixNav">
             <div class="signup">
-                <a class="signupBtn">Sign_in</a>
+                <a href="<?= $root_url?>login/index" class="signupBtn">Sign_in</a>
             </div>
         </nav>   
     </div>

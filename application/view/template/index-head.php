@@ -9,7 +9,7 @@
     <!-- send empty favicon fallback to prevent user's browser hitting the server for lots of favicon requests resulting in 404s -->
     <link rel="icon" href="data:;base64,=">
     <link href="<?= $root_url?>assets/css/index.css" rel="stylesheet">
-    <script src="<?= $root_url?>assets/js/index.js"></script>
+
     <script src="<?= $root_url?>assets/js/jquery.min.js"></script>
     
 </head>

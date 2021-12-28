@@ -1,0 +1,58 @@
+/*styling form*/
+.backtoIndexContainer a{
+    font-size: 200%;
+}
+.registerContainer{
+    margin-top: 9%;
+}
+.col-50{
+    width: 70%;
+}
+
+input[type=email], input[type=password] {
+   
+    border: 3px solid rgb(75, 72, 72);
+    color: black;
+    background-color: black;
+    font-weight: bolder;
+}
+
+input[type=password]:focus {
+   
+    background-color: white;
+}
+input[type=email]:focus{
+    background-color: white;
+}
+
+.forgetpassContainer{
+    border-bottom: 1px solid rgb(75, 72, 72);
+    
+}
+.forgetpassContainer p{
+    color:  rgb(161, 157, 157);
+    text-align: center;
+    margin: auto;
+    padding: 10%;
+}
+/* styling the form button*/
+#nextbtn{
+    background-color: rgb(43, 40, 40);
+    color:  rgb(75, 72, 72);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 150%;
+    font-weight: lighter;
+}
+.createAcc{
+    color:  rgb(161, 157, 157);
+    text-decoration: none;
+    font-size: 110%;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+.creatAccContainer{
+    
+    text-align: center;
+    padding: 10%;
+    
+}
