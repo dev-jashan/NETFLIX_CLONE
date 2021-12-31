@@ -1,0 +1,272 @@
+ *{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/*styling nav*/
+nav{
+    background-color: rgb(37, 32, 32,0.1);
+    display: flex;
+    align-items: center;
+    position: fixed;
+    
+}
+/* styling side bar*/
+.sideNavContainer{
+    transform: translateY(3px);
+    margin-right: 1rem;
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
+.backdrop{
+
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+.backdrop-active{
+    display: block;
+}
+.sidebar{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 70%;
+    max-width: 18rem;
+    height: 100%;
+    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    background-color: rgb(37, 32, 32);
+    transform: translateX(-100%);
+    position: absolute;
+
+}
+.sidebar-active{
+    transform: translateX(0);
+}
+.side_profile{
+    padding:1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid black;
+}
+.side_profile h1{
+
+    font-size:  1rem;
+    color:black;
+    margin-bottom: 6px;
+}
+.side_profile img{
+    width: 4rem;
+    height: 4rem;
+    margin-right: 1rem;
+    transform: translateX(-0.3rem);
+}
+.sidebar-list{
+    list-style: none;
+    overflow: hidden;
+}
+
+.sidebar-item{
+    padding: 1rem 1.5rem;
+    font-size: 1.2rem;
+    position:relative;
+}
+.sidebar-item a{
+
+    text-decoration: none;
+    color: rgba(233, 232, 232);
+    display: flex;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 1%;
+}
+.sidebar-item:hover{
+    background-color: rgb(64, 65, 66);
+    height: auto;
+    width: 100%;
+    transition: 0.3s;
+}
+
+.openSideBar{
+    font-size: 200%;
+    margin-left: 5%;
+}
+.selectedOption{
+    background-color: red;
+    height: auto;
+    color: red;
+    width: 2%;
+}
+.styleDownload{
+    padding:1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid black;
+}
+.styleDownload:hover{
+    background-color: rgb(64, 65, 66);
+    height: auto;
+    width: 100%;
+    transition: 0.3s;
+}
+.styleDownload a{
+    text-decoration: none;
+    color: rgba(233, 232, 232);
+    font-size: 120%;
+    font-weight:lighter;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 5%;
+}
+.styleDownload i{
+
+    color: rgba(233, 232, 232);
+    font-size: large;
+    
+}
+/*styling the front image*/
+#posterImg{
+    width: 100%;
+    height: 30rem;
+    box-shadow: 5px 5px 50px 50px #000000;
+    
+
+    
+}
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+/* styling the play and list button*/
+
+/* .playBtn{
+    position: absolute;
+    background-color: rgba(105, 105, 105, 0.5);
+    padding: 0.6rem;
+    font-size: 130%;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    box-shadow: 5px 5px 44px 5px #000000;
+    margin-left: 5%;
+    cursor: pointer;
+    
+} */
+/* 
+.listBtn{
+    
+    position: absolute;
+    background-color: rgba(112, 112, 114, 0.5);
+    padding: 0.6rem;
+    font-size: 130%;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    box-shadow: 5px 5px 44px 5px #000000;
+    margin-left: 30%;
+    cursor: pointer;
+}
+ */
+
+.frontImgContainer{
+  background-position: center center;
+  background-size:cover;
+  object-fit: content;
+}
+
+.frontImgContent{
+    margin-left: 1px;
+    padding:70px;
+    height: 32rem;
+}
+.title{
+    font-size: 3rem;
+    font-weight: 800;
+    padding-bottom: 0.3rem;
+    color: white;
+    margin-top: 2.5rem;
+    margin-bottom: 5rem;
+
+}
+.overview{
+    width: 45rem;
+    line-height: 1.4;
+    padding-top: 1rem;
+    font-size: 1.4rem;
+    max-width: 460px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+    color: white;
+}
+
+.frontbuttons{
+    margin-bottom: 3em;
+}
+.listBtn{
+    margin-left: 2rem;
+}
+.frontbuttons a{
+    padding-right: 3rem;
+    padding-left: 3rem;
+    padding-top: 0.8rem;
+    padding-bottom: 1rem;
+    text-decoration: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 130%;
+}
+.bottom-gradient{
+    height: 8em;
+    background-image: linear-gradient(
+        180deg,
+        transparent,
+        rgba(17, 17, 17, 0.91),
+        #111
+    );
+}
+
+/* 
+.overviewContainer{
+    position: absolute;
+    margin-top: 30%;
+    width: 50%;
+    margin-left: 5%;
+   
+} */
+
+/* .overview{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    box-shadow: 5px 5px 44px 5px #000000;
+    font-size: 120%;
+   
+} */
+/* 
+.title{
+    position: absolute;
+    margin-top: 30%;
+    width: 50%;
+    margin-left: 5%;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    box-shadow: 5px 5px 44px 5px #000000;
+    font-size: 120%;
+   
+} */
