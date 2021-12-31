@@ -14,6 +14,8 @@
 <!-- creating the rows images -->
 
 <!-- netflix Originals row -->
-<div class="netflixOriginalContainer">
-    <div class="originalsRow"></div>
-</div>
+<div class="originalTitle"><p>Netflix Original's</p></div>
+<div class="slider" id="netflixOriginalContainer "></div>
+<div class="nextBtn"><i class="fa fa-chevron-right next"></i></div>
+<div class="prevBtn"><i class="fa fa-chevron-left prev"></i></div>
+<div class="accessable" id="accessable"></div>

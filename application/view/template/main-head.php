@@ -9,11 +9,14 @@
     <!-- send empty favicon fallback to prevent user's browser hitting the server for lots of favicon requests resulting in 404s -->
     <link rel="icon" href="data:;base64,=">
     <link href="<?= $root_url?>assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="<?= $root_url?>assets/js/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
     <script src="<?= $root_url?>assets/js/main.js"></script>
 </head>
-<body>
+<body style="background-color: black;"> 
 
     <nav id="nav">
         <div class="sideNavContainer">
@@ -63,6 +66,7 @@
             <li class="sidebar-item">
                 <a href="">Documentaries</a>
             </li>
+            
         </div>
     </div> 
 </div>

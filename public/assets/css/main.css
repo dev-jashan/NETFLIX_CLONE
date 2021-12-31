@@ -10,6 +10,7 @@ nav{
     display: flex;
     align-items: center;
     position: fixed;
+    z-index:2;
     
 }
 /* styling side bar*/
@@ -33,20 +34,20 @@ nav{
     display: block;
 }
 .sidebar{
-    position: fixed;
+    
     left: 0;
     top: 0;
-    width: 70%;
-    max-width: 18rem;
-    height: 100%;
+    width: 100%;
+    max-width: 20rem;
     transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
     background-color: rgb(37, 32, 32);
     transform: translateX(-100%);
-    position: absolute;
-
+    position: fixed;
+    z-index: 4;
 }
 .sidebar-active{
     transform: translateX(0);
+    
 }
 .side_profile{
     padding:1rem 1.5rem;
@@ -143,41 +144,9 @@ nav{
     width: 100%;
 }
 
-/* styling the play and list button*/
 
-/* .playBtn{
-    position: absolute;
-    background-color: rgba(105, 105, 105, 0.5);
-    padding: 0.6rem;
-    font-size: 130%;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bolder;
-    padding-left: 3rem;
-    padding-right: 3rem;
-    box-shadow: 5px 5px 44px 5px #000000;
-    margin-left: 5%;
-    cursor: pointer;
-    
-} */
-/* 
-.listBtn{
-    
-    position: absolute;
-    background-color: rgba(112, 112, 114, 0.5);
-    padding: 0.6rem;
-    font-size: 130%;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bolder;
-    padding-left: 3rem;
-    padding-right: 3rem;
-    box-shadow: 5px 5px 44px 5px #000000;
-    margin-left: 30%;
-    cursor: pointer;
-}
- */
 
+ /* styling the front big image*/
 .frontImgContainer{
   background-position: center center;
   background-size:cover;
@@ -215,6 +184,8 @@ nav{
 .listBtn{
     margin-left: 2rem;
 }
+
+/* styling the play and list button*/
 .frontbuttons a{
     padding-right: 3rem;
     padding-left: 3rem;
@@ -236,37 +207,87 @@ nav{
     );
 }
 
-/* 
-.overviewContainer{
-    position: absolute;
-    margin-top: 30%;
-    width: 50%;
-    margin-left: 5%;
-   
-} */
+.originalTitle p{
+    color: white;
+    font-size: 130%;
+}
+.originalTitle{
+    margin-top: -5%;
+}
+/* styling the  originals rows*/
+.slick{
+    overflow: hidden;
+  padding: 0;
+  position: relative;
+} 
+.originalRows{
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+}
 
-/* .overview{
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bolder;
-    background-color: rgba(0, 0, 0, 0.3);
-    padding: 1rem;
-    box-shadow: 5px 5px 44px 5px #000000;
-    font-size: 120%;
-   
-} */
-/* 
-.title{
+.slider{
+    margin-bottom: 3%;
+}
+
+.prev,.next{
     position: absolute;
-    margin-top: 30%;
-    width: 50%;
-    margin-left: 5%;
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bolder;
-    background-color: rgba(0, 0, 0, 0.3);
-    padding: 1rem;
-    box-shadow: 5px 5px 44px 5px #000000;
-    font-size: 120%;
-   
-} */
+    z-index: 1;
+    margin-top: -14%;
+    padding: 2%;
+    background-color: rgba(0, 0, 0, 0.7);
+    
+}
+
+.nextBtn{
+    margin-left: 94%;
+}
+.accessable{
+    z-index: 3;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    margin-top:-90%;
+    padding-top: 100%;
+    display: none;
+}
+
+@media screen and (max-width: 700px) {
+    .prev,.next{
+        margin-top: -19%;
+        padding:2%;
+    }
+    .nextBtn{
+        margin-left: 86%;
+    }
+}
+@media screen and (max-width: 600px) {
+    .prev,.next{
+        margin-top: -22%;
+        padding:2%;
+    }
+    .nextBtn{
+        margin-left: 80%;
+    }
+    .overview{
+        font-size: 1rem;
+        max-width: 200px;
+    }
+    .frontbuttons a{
+        font-size: 90%;
+    }
+}
+@media screen and (max-width: 990px) {
+    .prev,.next{
+        margin-top: -17%;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .prev,.next{
+        padding: 3.4%;
+    }
+    .nextBtn{
+        margin-left: 91%;
+    }
+}
