@@ -12,10 +12,21 @@
                 let movies=JSON.parse(data);
                 let allMovies=movies[0];
                 let originals=movies[7];
-                
+                let actionArr=movies[2].concat(movies[3],movies[13]);
+                let adventure=movies[1].concat(movies[2],movies[13]);
+                let comedy=movies[4].concat(movies[14]);
+                let horror=movies[6];
+                let romance=movies[5];
+                let scifi=movies[8].concat(movies[11]);
                 // send data to their respective funcitions
                 getAllMovies(allMovies);
                 getNetflixOriginals(originals);
+                getNetflixAction(actionArr);
+                getNetflixAd(adventure);
+                getNetflixComedy(comedy);
+                getNetflixHorror(horror);
+                getNetflixRomance(romance);
+                getNetflixScifi(scifi);
                 
             },
             error: function(xhr, status, error){
@@ -24,6 +35,122 @@
         });
     }
 
+
+    //creating scifi rows
+    function getNetflixScifi(scifi){
+        console.log(scifi);
+        const  originalContainer=document.querySelector('.scifiSlider');
+        scifi.forEach((result) => {
+            const content = `   
+                    <div class="scifiRows"   id="scifiRows">
+                        <img id="img"  src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result.title}">
+                    </div>
+                `;
+                
+            originalContainer.innerHTML += content;
+        })
+        
+        getSlicky('.scifiSlider','.nextscifi','.prevscifi');
+    }
+
+    //creating romantic rows
+    function getNetflixRomance(romance){
+        console.log(romance);
+        const  originalContainer=document.querySelector('.romSlider');
+        romance.forEach((result) => {
+            const content = `   
+                    <div class="romRows"   id="romRows">
+                        <img id="img"  src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result.title}">
+                    </div>
+                `;
+                
+            originalContainer.innerHTML += content;
+        })
+        
+        getSlicky('.romSlider','.nextRom','.prevRom');
+    }
+    //creating horror row
+    function getNetflixHorror(horror){
+        console.log(horror);
+        const  originalContainer=document.querySelector('.horrSlider');
+        horror.forEach((result) => {
+            const content = `   
+                    <div class="horrRows"   id="horrRows">
+                        <img id="img"  src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result.title}">
+                    </div>
+                `;
+                
+            originalContainer.innerHTML += content;
+        })
+        
+        getSlicky('.horrSlider','.nextHorr','.prevHorr');
+    }
+
+    //creating the comedy row
+    function getNetflixComedy(comedy){
+        console.log(comedy)
+        const  originalContainer=document.querySelector('.comSlider');
+
+        comedy.forEach((result) => {
+            const content = `   
+                    <div class="comRows"   id="comRows">
+                        <img id="img"  src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result.title}">
+                    </div>
+                `;
+                
+            originalContainer.innerHTML += content;
+        })
+        
+        getSlicky('.comSlider','.nextCom','.prevCom');
+    }
+    
+    // set event lister to originals
+    function setOriginalEvent(){
+
+          Array.from(document.querySelectorAll(".originalRows")).forEach(form_input =>{
+            form_input.addEventListener('click', function(){
+                console.log('image was clicked');    
+            });
+            
+        });
+    }
+    // creating the action and thriller row
+    function getNetflixAd(ad){
+        console.log(ad)
+        const  originalContainer=document.querySelector('.adSlider');
+
+        ad.forEach((result) => {
+            const content = `   
+                    <div class="adRows"   id="adRows">
+                        <img id="img"  src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result.title}">
+                    </div>
+                `;
+                
+            originalContainer.innerHTML += content;
+        })
+        
+        getSlicky('.adSlider','.nextAd','.prevAd');
+    }
+
+    // creating the action and thriller row
+    function getNetflixAction(action){
+        console.log(action)
+        const  originalContainer=document.querySelector('.actionSlider');
+
+        action.forEach((result) => {
+            const content = `   
+                    <div class="actionRows"   id="actionRows">
+                        <img id="img"  src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result.title}">
+                    </div>
+                `;
+                
+            originalContainer.innerHTML += content;
+        })
+        
+        getSlicky('.actionSlider','.nextAction','.prevAction');
+    }
+     
+    // creating the original netflix row
     function getNetflixOriginals(original){
         console.log(original)
         const  originalContainer=document.querySelector('.slider');
@@ -38,57 +165,12 @@
             originalContainer.innerHTML += content;
             
         }) 
-        $(document).ready(function() {
-            $('.slider').slick({
-                dots: false,
-                infinite: false,
-                speed: 300,
-                slidesToShow: 6,
-                slidesToScroll: 6,
-                adaptiveHeight: false,
-                nextArrow:$('.next'),
-                prevArrow:$('.prev'),
-                responsive: [
-                  {
-                    breakpoint: 1275,
-                    settings: {
-                      slidesToShow: 5,
-                      slidesToScroll: 5,
-                      infinite: false,
-                      dots: false
-                    }
-                  },
-                  {
-                    breakpoint: 1035,
-                    settings: {
-                      slidesToShow: 4,
-                      slidesToScroll: 4
-                    }
-                  },
-                  {
-                    breakpoint: 850,
-                    settings: {
-                      slidesToShow: 3,
-                      slidesToScroll: 3
-                    }
-                  },
-                  {
-                    breakpoint: 640,
-                    settings: {
-                      slidesToShow: 2,
-                      slidesToScroll: 2
-                    }
-                  }
-                  // You can unslick at a given breakpoint now by adding:
-                  // settings: "unslick"
-                  // instead of a settings object
-                ]
-              });
-        });
-        
+        getSlicky('.slider','.next','.prev');
+        setOriginalEvent();
     }
 
-    
+
+        
     // get all movies to pick a random one for the front screen
     function getAllMovies(allMovies){
 
@@ -170,11 +252,61 @@
             
         })
     }
-
+    
+    function getSlicky(className,nextBtn,prevBtn){
+        $(document).ready(function() {
+            $(className).slick({
+                dots: false,
+                infinite: false,
+                speed: 300,
+                slidesToShow: 6,
+                slidesToScroll: 6,
+                adaptiveHeight: false,
+                nextArrow:$(nextBtn),
+                prevArrow:$(prevBtn),
+                responsive: [
+                  {
+                    breakpoint: 1275,
+                    settings: {
+                      slidesToShow: 5,
+                      slidesToScroll: 5,
+                      infinite: false,
+                      dots: false
+                    }
+                  },
+                  {
+                    breakpoint: 1035,
+                    settings: {
+                      slidesToShow: 4,
+                      slidesToScroll: 4
+                    }
+                  },
+                  {
+                    breakpoint: 850,
+                    settings: {
+                      slidesToShow: 3,
+                      slidesToScroll: 3
+                    }
+                  },
+                  {
+                    breakpoint: 640,
+                    settings: {
+                      slidesToShow: 2,
+                      slidesToScroll: 2
+                    }
+                  }
+                  // You can unslick at a given breakpoint now by adding:
+                  // settings: "unslick"
+                  // instead of a settings object
+                ]
+              });
+        });  
+    }
 
     function init(){    
         window.onscroll = function() {navBarLogic()};
         moviesDb();
+        
     }
 
     document.addEventListener("DOMContentLoaded", function (){

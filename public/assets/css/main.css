@@ -220,11 +220,14 @@ nav{
   padding: 0;
   position: relative;
 } 
+
+/* this is the originals row*/
 .originalRows{
     overflow: hidden;
     padding: 0;
     position: relative;
 }
+
 
 .slider{
     margin-bottom: 3%;
@@ -248,9 +251,184 @@ nav{
     position: fixed;
     background-color: rgba(0, 0, 0, 0.5);
     width: 100%;
-    margin-top:-90%;
-    padding-top: 100%;
+    margin-top:-100%;
+    padding-top: 300%;
     display: none;
+}
+
+/*this is the actin row*/
+.actionRows{
+    
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    margin-top: 0.3%;    
+}
+
+.actionTitle p{
+    color: white;
+    font-size: 130%;
+}
+.actionTitle{
+    margin-top: 2%;
+}
+.nextAction,.prevAction{
+    position: absolute;
+    color: white;
+    margin-top: -14%;
+    z-index: 1;
+    padding: 2%;
+    background-color: rgba(0, 0, 0, 0.7);
+    
+}
+.actionNextBtn{
+    margin-left: 94%;
+}
+
+/* adventure */
+.adRows{
+    
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    margin-top: 0.3%;    
+}
+
+.adTitle p{
+    color: white;
+    font-size: 130%;
+}
+.adTitle{
+    margin-top: 2%;
+}
+.nextAd,.prevAd{
+    position: absolute;
+    color: white;
+    margin-top: -14%;
+    z-index: 1;
+    padding: 2%;
+    background-color: rgba(0, 0, 0, 0.7);
+    
+}
+.adNextBtn{
+    margin-left: 94%;
+}
+
+/* comedy */
+.comRows{
+    
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    margin-top: 0.3%;    
+}
+
+.comTitle p{
+    color: white;
+    font-size: 130%;
+}
+.comTitle{
+    margin-top: 2%;
+}
+.nextCom,.prevCom{
+    position: absolute;
+    color: white;
+    margin-top: -14%;
+    z-index: 1;
+    padding: 2%;
+    background-color: rgba(0, 0, 0, 0.7);
+    
+}
+.comNextBtn{
+    margin-left: 94%;
+}
+
+/* horror */
+.horrRows{
+    
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    margin-top: 0.3%;    
+}
+
+.horrTitle p{
+    color: white;
+    font-size: 130%;
+}
+.horrTitle{
+    margin-top: 2%;
+}
+.prevHorr,.nextHorr{
+    position: absolute;
+    color: white;
+    margin-top: -14%;
+    z-index: 1;
+    padding: 2%;
+    background-color: rgba(0, 0, 0, 0.7);
+    
+}
+.horrNextBtn{
+    margin-left: 94%;
+}
+
+/* romance */
+.romRows{
+    
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    margin-top: 0.3%;    
+}
+
+.romTitle p{
+    color: white;
+    font-size: 130%;
+}
+.romTitle{
+    margin-top: 2%;
+}
+.prevRom,.nextRom{
+    position: absolute;
+    color: white;
+    margin-top: -14%;
+    z-index: 1;
+    padding: 2%;
+    background-color: rgba(0, 0, 0, 0.7);
+    
+}
+.romNextBtn{
+    margin-left: 94%;
+}
+
+
+/* scifi */
+.scifiRows{
+    
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    margin-top: 0.3%;    
+}
+
+.scifiTitle p{
+    color: white;
+    font-size: 130%;
+}
+.scifiTitle{
+    margin-top: 2%;
+}
+.prevscifi,.nextscifi{
+    position: absolute;
+    color: white;
+    margin-top: -14%;
+    z-index: 1;
+    padding: 2%;
+    background-color: rgba(0, 0, 0, 0.7);
+    
+}
+.scifiNextBtn{
+    margin-left: 94%;
 }
 
 @media screen and (max-width: 700px) {
@@ -259,6 +437,42 @@ nav{
         padding:2%;
     }
     .nextBtn{
+        margin-left: 86%;
+    }
+    .nextAction,.prevAction{
+        margin-top: -19%;
+        padding:2%;
+    }
+    .actionNextBtn{
+        margin-left: 86%;
+    }
+    .nextAd,.prevAd{
+        margin-top: -19%;
+        padding:2%;
+    }
+    .adNextBtn{
+        margin-left: 86%;
+    }
+    .nextCom,.prevCom{
+        margin-top: -19%;
+        padding:2%;
+    }
+    .comNextBtn{
+        margin-left: 86%;
+    }
+    .nextHorr,.prevHorr{
+        margin-top: -19%;
+        padding:2%;
+    }
+    .horrNextBtn{
+        margin-left: 86%;
+    }
+    
+    .nextscifi,.prevscifi{
+        margin-top: -19%;
+        padding:2%;
+    }
+    .scifiNextBtn{
         margin-left: 86%;
     }
 }
@@ -270,6 +484,34 @@ nav{
     .nextBtn{
         margin-left: 80%;
     }
+    .nextAction,.prevAction{
+        margin-top: -22%;
+        padding:2%;
+    }
+    .actionNextBtn{
+        margin-left: 80%;
+    }
+    .nextAd,.prevAd{
+        margin-top: -22%;
+        padding:2%;
+    }
+    .adNextBtn{
+        margin-left: 80%;
+    }
+    .nextCom,.prevCom{
+        margin-top: -22%;
+        padding:2%;
+    }
+    .comNextBtn{
+        margin-left: 80%;
+    }
+    .nextHorr,.prevHorr{
+        margin-top: -22%;
+        padding:2%;
+    }
+    .horrNextBtn{
+        margin-left: 80%;
+    }
     .overview{
         font-size: 1rem;
         max-width: 200px;
@@ -277,17 +519,87 @@ nav{
     .frontbuttons a{
         font-size: 90%;
     }
+    .nextRom,.prevRom{
+        font-size: 1rem;
+        max-width: 200px;
+    }
+    .romNextBtn{
+        font-size: 90%;
+    }
+    .scifiNextBtn{
+        font-size: 90%;
+    }
 }
 @media screen and (max-width: 990px) {
     .prev,.next{
         margin-top: -17%;
     }
+    .nextAction,.prevAction{
+        margin-top: -17%;
+    }
+    .nextAd,.prevAd{
+        margin-top: -17%;
+    }
+    .nextCom,.prevCom{
+        margin-top: -17%;
+    }
+    .nextHorr,.prevHorr{
+        margin-top: -17%;
+    }
+    .nextRom,.prevRom{
+        margin-top: -17%;
+    }
+    .nextscifi,.prevscifi{
+        margin-top: -17%;
+    }
+    
 }
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1102px) {
     .prev,.next{
         padding: 3.4%;
     }
     .nextBtn{
         margin-left: 91%;
     }
+    .nextAction,.prevAction{
+        padding: 3.4%;
+    }
+    .actionNextBtn{
+        margin-left: 91%;
+    }
+    .nextAd,.prevAd{
+        padding: 3.4%;
+    }
+    .adNextBtn{
+        margin-left: 91%;
+    }
+    .nextCom,.prevCom{
+        padding: 3.4%;
+    }
+    .comNextBtn{
+        margin-left: 91%;
+    }
+    .nextHorr,.prevHorr{
+        padding: 3.4%;
+    }
+    .horrNextBtn{
+        margin-left: 91%;
+    }
+    .accessable{
+        margin-top:-290%;
+        padding-top: 800%;
+    }
+    .nextRom,.prevRom{
+        padding: 3.4%;
+    }
+    .romNextBtn{
+        margin-left: 91%;
+    }
+    .nextscifi,.prevscifi{
+        padding: 3.4%;
+    }
+    .scifiNextBtn{
+        margin-left: 91%;
+    }
+
 }

@@ -18,4 +18,45 @@
 <div class="slider" id="netflixOriginalContainer "></div>
 <div class="nextBtn"><i class="fa fa-chevron-right next"></i></div>
 <div class="prevBtn"><i class="fa fa-chevron-left prev"></i></div>
+
+<!-- action row -->
+<div class="actionTitle"><p>Action & thriller</p></div>
+<div class="actionSlider" id="actionContainer"></div>
+<div class="actionNextBtn"><i class="fa fa-chevron-right nextAction"></i></div>
+<div class="actionPrevBtn"><i class="fa fa-chevron-left prevAction"></i></div>
+<div class="accessable" id="accessable"></div>
+
+<!-- adventure row -->
+<div class="adTitle"><p>Action & Adventure</p></div>
+<div class="adSlider" id="adContainer"></div>
+<div class="adNextBtn"><i class="fa fa-chevron-right nextAd"></i></div>
+<div class="adPrevBtn"><i class="fa fa-chevron-left prevAd"></i></div>
+<div class="accessable" id="accessable"></div>
+
+<!-- comedy row -->
+<div class="comTitle"><p>Comedy</p></div>
+<div class="comSlider" id="comContainer"></div>
+<div class="comNextBtn"><i class="fa fa-chevron-right nextCom"></i></div>
+<div class="comPrevBtn"><i class="fa fa-chevron-left prevCom"></i></div>
+<div class="accessable" id="accessable"></div>
+
+<!-- horror row -->
+<div class="horrTitle"><p>Horror</p></div>
+<div class="horrSlider" id="horrContainer"></div>
+<div class="horrNextBtn"><i class="fa fa-chevron-right nextHorr"></i></div>
+<div class="horrPrevBtn"><i class="fa fa-chevron-left prevHorr"></i></div>
+<div class="accessable" id="accessable"></div>
+
+<!-- romance row -->
+<div class="romTitle"><p>Romance</p></div>
+<div class="romSlider" id="romContainer"></div>
+<div class="romNextBtn"><i class="fa fa-chevron-right nextRom"></i></div>
+<div class="romPrevBtn"><i class="fa fa-chevron-left prevRom"></i></div>
+<div class="accessable" id="accessable"></div>
+
+<!-- scifi row -->
+<div class="scifiTitle"><p>Sci-Fi</p></div>
+<div class="scifiSlider" id="scifiContainer"></div>
+<div class="scifiNextBtn"><i class="fa fa-chevron-right nextscifi"></i></div>
+<div class="scifiPrevBtn"><i class="fa fa-chevron-left prevscifi"></i></div>
 <div class="accessable" id="accessable"></div>
