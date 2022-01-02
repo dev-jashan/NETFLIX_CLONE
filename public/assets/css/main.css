@@ -431,6 +431,178 @@ nav{
     margin-left: 94%;
 }
 
+
+/* crime */
+.crimeRows{
+    
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    margin-top: 0.3%;    
+}
+
+.crimeTitle p{
+    color: white;
+    font-size: 130%;
+}
+.crimeTitle{
+    margin-top: 2%;
+}
+.prevcrime,.nextcrime{
+    position: absolute;
+    color: white;
+    margin-top: -14%;
+    z-index: 1;
+    padding: 2%;
+    background-color: rgba(0, 0, 0, 0.7);
+    
+}
+.dramaNextBtn{
+    margin-left: 94%;
+}
+/* Drama */
+.dramaRows{
+    
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    margin-top: 0.3%;    
+}
+
+.dramaTitle p{
+    color: white;
+    font-size: 130%;
+}
+.dramaTitle{
+    margin-top: 2%;
+}
+.prevdrama,.nextdrama{
+    position: absolute;
+    color: white;
+    margin-top: -14%;
+    z-index: 1;
+    padding: 2%;
+    background-color: rgba(0, 0, 0, 0.7);
+    
+}
+.dramaNextBtn{
+    margin-left: 94%;
+}
+
+/* Documantaries */
+.docRows{
+    
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    margin-top: 0.3%;    
+}
+
+.docTitle p{
+    color: white;
+    font-size: 130%;
+}
+.docTitle{
+    margin-top: 2%;
+}
+.prevdoc,.nextdoc{
+    position: absolute;
+    color: white;
+    margin-top: -14%;
+    z-index: 1;
+    padding: 2%;
+    background-color: rgba(0, 0, 0, 0.7);
+    
+}
+.docNextBtn{
+    margin-left: 94%;
+}
+ /* this is the pop up movie styling  */
+.playMovieContainer{
+    z-index: 6;
+    position: fixed;
+    background-color: rgba(0, 0, 0);
+    height: 750px;
+    width: 55vw;
+    margin-left: 25%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow-y: scroll;
+}
+.descriptionContainer{
+    margin-top: 1.3%;
+}
+.descriptionContainer ul li{
+    font-size: 120%;
+}
+.descriptionContainer ul{
+    display:flex;
+    justify-content: space-evenly;
+}
+.movieTitle{
+    color: white;
+    font-size: 170%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+iframe{
+    width: 50vw;
+    height: 50vh;
+    position: relative;
+}
+
+.movieOverview{
+    color: white;
+    font-size: 130%;
+}
+.overviewContainer{
+    margin:2%;
+}
+.symbol{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 5%;
+}
+.symbol i{
+    color: white;
+    font-size: 180%;
+}
+.movieCardsContainer{
+   
+    margin-top: 5%;
+}
+.movieCards{
+   
+    max-width: 800px;
+    margin-top: 1%;
+    margin: 0 ,auto;
+}
+.rows{
+    padding: 1rem;
+    display: inline;
+    margin-top:5%;
+}
+.rows img{
+    margin-top:2%;
+    height: 200px;
+    width: 160px;
+    margin-bottom: 4%;
+}
+.coverSelectedMovie{
+    z-index: 5;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    margin-top:-100%;
+    padding-top: 300%;
+    display: none;
+}
+iframe{
+    margin-top: 5%;
+}
+/* all media queries*/
 @media screen and (max-width: 700px) {
     .prev,.next{
         margin-top: -19%;
@@ -475,7 +647,33 @@ nav{
     .scifiNextBtn{
         margin-left: 86%;
     }
+    .nextcrime,.prevcrime{
+        margin-top: -19%;
+        padding:2%;
+    }
+    .crimeNextBtn{
+        margin-left: 86%;
+    }
+    .nextdrama,.prevdrama{
+        margin-top: -19%;
+        padding:2%;
+    }
+    .dramaNextBtn{
+        margin-left: 86%;
+    }
+    .nextdoc,.prevdoc{
+        margin-top: -19%;
+        padding:2%;
+    }
+    .docNextBtn{
+        margin-left: 86%;
+    }
+
+
 }
+
+
+
 @media screen and (max-width: 600px) {
     .prev,.next{
         margin-top: -22%;
@@ -526,9 +724,35 @@ nav{
     .romNextBtn{
         font-size: 90%;
     }
+    .nextscifi,.prevscifi{
+        margin-top: -22%;
+        padding:2%;
+    }
     .scifiNextBtn{
         font-size: 90%;
     }
+    .nextcrime,.prevcrime{
+        margin-top: -22%;
+        padding:2%;
+    }
+    .crimeNextBtn{
+        font-size: 90%;
+    }
+    .nextdrama,.prevdrama{
+        margin-top: -22%;
+        padding:2%;
+    }
+    .dramaNextBtn{
+        font-size: 90%;
+    }
+    .nextdoc,.prevdoc{
+        margin-top: -22%;
+        padding:2%;
+    }
+    .docNextBtn{
+        font-size: 90%;
+    }
+
 }
 @media screen and (max-width: 990px) {
     .prev,.next{
@@ -550,6 +774,15 @@ nav{
         margin-top: -17%;
     }
     .nextscifi,.prevscifi{
+        margin-top: -17%;
+    }
+    .nextcrime,.prevcrime{
+        margin-top: -17%;
+    }
+    .nextdrama,.prevdrama{
+        margin-top: -17%;
+    }
+    .nextdoc,.prevdoc{
         margin-top: -17%;
     }
     
@@ -599,6 +832,24 @@ nav{
         padding: 3.4%;
     }
     .scifiNextBtn{
+        margin-left: 91%;
+    }
+    .nextcrime,.prevcrime{
+        padding: 3.4%;
+    }
+    .crimeNextBtn{
+        margin-left: 91%;
+    }
+    .nextdrama,.prevdrama{
+        padding: 3.4%;
+    }
+    .dramaNextBtn{
+        margin-left: 91%;
+    }
+    .nextdoc,.prevdoc{
+        padding: 3.4%;
+    }
+    .docNextBtn{
         margin-left: 91%;
     }
 

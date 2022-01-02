@@ -18,6 +18,9 @@
                 let horror=movies[6];
                 let romance=movies[5];
                 let scifi=movies[8].concat(movies[11]);
+                let crime=movies[13].concat(movies[15]);
+                let drama=movies[9].concat(movies[10]);
+                let doc=movies[17];
                 // send data to their respective funcitions
                 getAllMovies(allMovies);
                 getNetflixOriginals(originals);
@@ -27,7 +30,13 @@
                 getNetflixHorror(horror);
                 getNetflixRomance(romance);
                 getNetflixScifi(scifi);
-                
+                getNetflixCrime(crime);
+                getNetflixDrama(drama);
+                getNetflixDocumentaries(doc);
+
+                // send all movies to the set event function 
+                setOriginalEvent(originals);
+                setHorrEvent(horror);
             },
             error: function(xhr, status, error){
                 console.error(xhr);
@@ -35,10 +44,56 @@
         });
     }
 
+    //creating drama
+    function getNetflixDrama(drama){
+        const  originalContainer=document.querySelector('.dramaSlider');
+        drama.forEach((result) => {
+            const content = `   
+                    <div class="dramaRows"   id="dramaRows">
+                        <img id="img"  src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result.title}">
+                    </div>
+                `;
+                
+            originalContainer.innerHTML += content;
+        })
+        
+        getSlicky('.dramaSlider','.nextdrama','.prevdrama');
+    }
+
+    //creating documentaries
+    function getNetflixDocumentaries(doc){
+        const  originalContainer=document.querySelector('.docSlider');
+        doc.forEach((result) => {
+            const content = `   
+                    <div class="docRows"   id="docRows">
+                        <img id="img"  src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result.title}">
+                    </div>
+                `;
+                
+            originalContainer.innerHTML += content;
+        })
+        
+        getSlicky('.docSlider','.nextdoc','.prevdoc');
+    }
+
+    //creating crime and mystery
+    function getNetflixCrime(crime){
+        const  originalContainer=document.querySelector('.crimeSlider');
+        crime.forEach((result) => {
+            const content = `   
+                    <div class="crimeRows"   id="crimeRows">
+                        <img id="img"  src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result.title}">
+                    </div>
+                `;
+                
+            originalContainer.innerHTML += content;
+        })
+        
+        getSlicky('.crimeSlider','.nextcrime','.prevcrime');
+    }
 
     //creating scifi rows
     function getNetflixScifi(scifi){
-        console.log(scifi);
         const  originalContainer=document.querySelector('.scifiSlider');
         scifi.forEach((result) => {
             const content = `   
@@ -55,7 +110,6 @@
 
     //creating romantic rows
     function getNetflixRomance(romance){
-        console.log(romance);
         const  originalContainer=document.querySelector('.romSlider');
         romance.forEach((result) => {
             const content = `   
@@ -71,12 +125,11 @@
     }
     //creating horror row
     function getNetflixHorror(horror){
-        console.log(horror);
         const  originalContainer=document.querySelector('.horrSlider');
         horror.forEach((result) => {
             const content = `   
                     <div class="horrRows"   id="horrRows">
-                        <img id="img"  src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result.title}">
+                        <img id="img"  src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result['ID']}">
                     </div>
                 `;
                 
@@ -88,13 +141,12 @@
 
     //creating the comedy row
     function getNetflixComedy(comedy){
-        console.log(comedy)
         const  originalContainer=document.querySelector('.comSlider');
 
         comedy.forEach((result) => {
             const content = `   
                     <div class="comRows"   id="comRows">
-                        <img id="img"  src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result.title}">
+                        <img id='${result['name']}'  src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px">
                     </div>
                 `;
                 
@@ -104,16 +156,7 @@
         getSlicky('.comSlider','.nextCom','.prevCom');
     }
     
-    // set event lister to originals
-    function setOriginalEvent(){
-
-          Array.from(document.querySelectorAll(".originalRows")).forEach(form_input =>{
-            form_input.addEventListener('click', function(){
-                console.log('image was clicked');    
-            });
-            
-        });
-    }
+    
     // creating the action and thriller row
     function getNetflixAd(ad){
         console.log(ad)
@@ -158,7 +201,7 @@
         original.forEach((result) => {
             const content = `   
                     <div class="originalRows"   id="originalRows"  style="position: relative;">
-                        <img id="img"  style="position: relative;" src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result.title}">
+                        <img id="img" class="img"  style="position: relative;" src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result['ID']}">
                     </div>
                 `;
                 
@@ -166,11 +209,134 @@
             
         }) 
         getSlicky('.slider','.next','.prev');
-        setOriginalEvent();
+        
     }
 
-
+    
+// set event lister to originals
+function setHorrEvent(allMovies){
+    const displayMovie=document.querySelector('.playMovie');
+document.querySelectorAll(".horrRows").forEach(function(item){
+    item.addEventListener("click", function(e){
+        displayMovie.style.display='block';
+        console.log('this is the original row');
+        let movieId=e.target.alt;
+        console.log(allMovies);
+        let movieData=filterMovies(allMovies,movieId);
+        console.log(movieData);
         
+    })
+    
+})
+}
+
+
+
+    // set event lister to  the first netflix original movie selected
+    function setOriginalEvent(allMovies){
+
+        // select all the containers required
+        const displayMovie=document.querySelector('.playMovieContainer');
+        let titleContainer=document.querySelector('.movieOverview');
+        let close=document.querySelector('.coverSelectedMovie');
+        document.querySelectorAll(".originalRows").forEach(function(item){
+            item.addEventListener("click", function(e){
+
+                  
+                let movieId=e.target.alt;
+                let movieData=filterMovies(allMovies,movieId);
+                let longOverview=movieData[0]['overview'];
+                let trailer=movieData[0]['trailers'];
+                let shortOverview=truncate(longOverview,150);
+                let showLeftMovies=leftMovies(allMovies,movieId);
+
+                displayMovie.style.display='block';
+                titleContainer.innerHTML=shortOverview;   
+                
+                // funcition declaration
+                embeedVideo(trailer);
+                createLeftMovies(showLeftMovies);
+                disable();
+                selectLeftMovies(showLeftMovies);
+                close.style.display='block';
+                
+            })
+        })
+    }
+
+    // add youtbe video 
+    function embeedVideo(id){
+        const  originalContainer=document.querySelector('.playMovie');
+        originalContainer.innerHTML="";
+        const content = `   
+                <iframe class='player' src="https://www.youtube.com/embed/${id}" 
+                    title="YouTube video player" frameborder="0"
+                    allow="encrypted-media;picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+                `;
+                
+            originalContainer.innerHTML += content;
+    }
+
+    // disabel scroll
+    function disable() {
+        // To get the scroll position of current webpage
+        TopScroll = window.pageYOffset || document.documentElement.scrollTop;
+        LeftScroll = window.pageXOffset || document.documentElement.scrollLeft,
+        
+        // if scroll happens, set it to the previous value
+        window.onscroll = function() {
+        window.scrollTo(LeftScroll, TopScroll);
+        };
+    }
+    
+    // get selected movie
+    function filterMovies(allMovies,movieId){
+        let findMovie=allMovies.filter(element=>element['ID']==movieId);  
+        return findMovie;
+    }
+
+    // movie not selected
+    function leftMovies(allMovies,movieId){
+        let findMovie=allMovies.filter(element=>element['ID']!=movieId);  
+        return findMovie;
+    }
+
+    // show the movies that are not selected
+    function createLeftMovies(cards){
+        const  originalContainer=document.querySelector('.movieCards');
+
+        cards.forEach((result) => {
+            const content = `   
+                    <div class="rows"   id="rows"  style="position: relative;">
+                        <img id="img" class="img"  style="position: relative;" src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result['ID']}">
+                    </div>
+                `;
+                
+            originalContainer.innerHTML += content;
+            
+        }) 
+    }
+
+    // to select a movie that is not selected before 
+    function selectLeftMovies(allMovies){
+        let titleContainer=document.querySelector('.movieOverview');
+        document.querySelectorAll(".rows").forEach(function(item){
+            item.addEventListener("click", function(e){
+                //displayMovie.style.display='block';
+                let movieId=e.target.alt;
+                console.log(movieId)
+                let movieData=filterMovies(allMovies,movieId);
+                let longOverview=movieData[0]['overview'];
+                let trailer=movieData[0]['trailers'];
+                let shortOverview=truncate(longOverview,150);
+                titleContainer.innerHTML=shortOverview;   
+                embeedVideo(trailer);
+            })
+        })
+    }
+
     // get all movies to pick a random one for the front screen
     function getAllMovies(allMovies){
 
@@ -207,7 +373,6 @@
 
     // create a sticky nav bar
     function navBarLogic(){
-
         let navbar = document.getElementById("nav");
         
         // Get the offset position of the navbar
@@ -226,17 +391,14 @@
                 navbar.style.backgroundColor='rgb(37, 32, 32,0.1)';
             }
         })
-
-
     }
 
-    // create a side bar
+    // enable and disable sidebar 
     function sidebarLogic(){
         const sidenavContainer=document.querySelector('.sideNavContainer');
         let closeSideBar=document.querySelector('.accessable');
         const backdrop=document.querySelector('.backdrop');
         const sidebar=document.querySelector('.sidebar');
-
 
         sidenavContainer.addEventListener('click',()=>{
             closeSideBar.style.display='block';  
@@ -253,6 +415,24 @@
         })
     }
     
+    // close a movie
+    function closeMovie(){
+        let close=document.querySelector('.coverSelectedMovie');
+        let closeMovie=document.querySelector('.playMovieContainer');
+        const  originalContainer=document.querySelector('.playMovie');
+        close.addEventListener('click',()=>{
+            close.style.display='none';
+            closeMovie.style.display='none';
+            window.onscroll = function() {
+                window.scrollTo(document.documentElement.scrollLeft, document.documentElement.scrollTop);
+            };
+            originalContainer.innerHTML="";
+            
+        })
+        
+    }
+
+    // make a carasoul 
     function getSlicky(className,nextBtn,prevBtn){
         $(document).ready(function() {
             $(className).slick({
@@ -303,9 +483,11 @@
         });  
     }
 
+    
     function init(){    
         window.onscroll = function() {navBarLogic()};
         moviesDb();
+        closeMovie();
         
     }
 
