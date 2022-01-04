@@ -7,7 +7,7 @@ use application\core\Controller;
 require_once '..\application\core\Controller.php';
 
 
-class ComedyController extends Controller{
+class TvController extends Controller{
 
     public function __construct()
     {  
@@ -16,6 +16,6 @@ class ComedyController extends Controller{
     
     public function index()
     {
-        $this->View->renderComedy('comedy/index');
+        $this->View->renderTv('tv/index');
     }   
 }

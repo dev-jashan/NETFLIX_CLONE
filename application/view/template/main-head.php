@@ -45,25 +45,28 @@
                 <a href="">Home</a>
             </li>
             <li class="sidebar-item">
-                <a href="">Dramas</a>
+                <a href="<?= $root_url?>drama/index">Dramas</a>
             </li>
             <li class="sidebar-item">
-                <a href="">Thriller Movies</a>
+                <a href="<?= $root_url?>thrill/index">Thriller Movies</a>
             </li>
             <li class="sidebar-item">
-                <a href="">Horror Movies</a>
+                <a href="<?= $root_url?>horror/index">Horror Movies</a>
             </li>
             <li class="sidebar-item">
-                <a href="">TV Shows</a>
+                <a href="<?= $root_url?>tv/index">TV Shows</a>
             </li>
             <li class="sidebar-item">
-                <a href="">Romantic Movies</a>
+                <a href="<?= $root_url?>romantic/index">Romantic Movies</a>
             </li>
             <li class="sidebar-item">
-                <a href="">Action & Adventure</a>
+                <a href="<?= $root_url?>action/index">Action & Adventure</a>
             </li>
             <li class="sidebar-item">
-                <a href="">Documentaries</a>
+                <a href="<?= $root_url?>doc/index">Documentaries</a>
+            </li>
+            <li class="sidebar-item">
+                <a href="<?= $root_url?>comedy/index">Comedy</a>
             </li>
             
         </div>

@@ -91,4 +91,101 @@ class View{
         require Config::get('PATH_VIEW') . $filename . '.php';
         require Config::get('PATH_VIEW') . 'template/main-foot.php';
     }
+    public function renderDrama($filename, $data = null)                     
+    {
+        if ($data) {
+            foreach ($data as $key => $value) {
+                $this->{$key} = $value;
+            }
+        }
+
+        require Config::get('PATH_VIEW') . 'template/drama-head.php';
+        require Config::get('PATH_VIEW') . $filename . '.php';
+        require Config::get('PATH_VIEW') . 'template/drama-foot.php';
+    }
+    public function renderThrill($filename, $data = null)                     
+    {
+        if ($data) {
+            foreach ($data as $key => $value) {
+                $this->{$key} = $value;
+            }
+        }
+
+        require Config::get('PATH_VIEW') . 'template/thrill-head.php';
+        require Config::get('PATH_VIEW') . $filename . '.php';
+        require Config::get('PATH_VIEW') . 'template/thrill-foot.php';
+    }
+
+    public function renderHorror($filename, $data = null)                     
+    {
+        if ($data) {
+            foreach ($data as $key => $value) {
+                $this->{$key} = $value;
+            }
+        }
+
+        require Config::get('PATH_VIEW') . 'template/horror-head.php';
+        require Config::get('PATH_VIEW') . $filename . '.php';
+        require Config::get('PATH_VIEW') . 'template/horror-foot.php';
+    }
+    public function renderTv($filename, $data = null)                     
+    {
+        if ($data) {
+            foreach ($data as $key => $value) {
+                $this->{$key} = $value;
+            }
+        }
+
+        require Config::get('PATH_VIEW') . 'template/tv-head.php';
+        require Config::get('PATH_VIEW') . $filename . '.php';
+        require Config::get('PATH_VIEW') . 'template/tv-foot.php';
+    }
+    public function renderRomantic($filename, $data = null)                     
+    {
+        if ($data) {
+            foreach ($data as $key => $value) {
+                $this->{$key} = $value;
+            }
+        }
+
+        require Config::get('PATH_VIEW') . 'template/romantic-head.php';
+        require Config::get('PATH_VIEW') . $filename . '.php';
+        require Config::get('PATH_VIEW') . 'template/romantic-foot.php';
+    }
+    public function renderAction($filename, $data = null)                     
+    {
+        if ($data) {
+            foreach ($data as $key => $value) {
+                $this->{$key} = $value;
+            }
+        }
+
+        require Config::get('PATH_VIEW') . 'template/action-head.php';
+        require Config::get('PATH_VIEW') . $filename . '.php';
+        require Config::get('PATH_VIEW') . 'template/action-foot.php';
+    }
+    public function renderDoc($filename, $data = null)                     
+    {
+        if ($data) {
+            foreach ($data as $key => $value) {
+                $this->{$key} = $value;
+            }
+        }
+
+        require Config::get('PATH_VIEW') . 'template/doc-head.php';
+        require Config::get('PATH_VIEW') . $filename . '.php';
+        require Config::get('PATH_VIEW') . 'template/doc-foot.php';
+    }
+    public function renderComedy($filename, $data = null)                     
+    {
+        if ($data) {
+            foreach ($data as $key => $value) {
+                $this->{$key} = $value;
+            }
+        }
+
+        require Config::get('PATH_VIEW') . 'template/comedy-head.php';
+        require Config::get('PATH_VIEW') . $filename . '.php';
+        require Config::get('PATH_VIEW') . 'template/comedy-foot.php';
+    }
 }

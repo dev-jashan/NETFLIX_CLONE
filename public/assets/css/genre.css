@@ -1,0 +1,47 @@
+/* title */
+.genre{
+    color: white;
+    font-size: 220%;
+    margin-top: 1%;
+    padding-left: 5%;
+
+}
+/*  nav styling */
+nav{
+    background-color: black;
+    padding:1rem;
+}
+
+/* styling cards */
+.movies-Container{
+    padding-top: 10%;
+    max-width: 1400px;
+    align-items: center;
+    text-align: center;
+}
+
+/* sidbar cover */
+.dramaMovies{
+    margin-left: 5%;
+}
+/* displaying rows*/
+.dramaRows{
+    display: inline;
+    margin-top:2%;
+    height: 200px;
+    width: 160px;
+    margin-bottom: 4%;
+    padding-left: 1rem;
+    
+}
+.coverDrama{
+    z-index: 3;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    margin-top:-200%;
+    padding-top: 300%;
+    display: none;
+}
+
+

@@ -12,7 +12,7 @@
     <link href="<?= $root_url?>assets/css/genre.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="<?= $root_url?>assets/js/jquery.min.js"></script>
-    <script src="<?= $root_url?>assets/js/comedy.js"></script>
+    <script src="<?= $root_url?>assets/js/doc.js"></script>
 </head>
 <body style="background-color: black;"> 
 
@@ -20,7 +20,7 @@
         <div class="sideNavContainer">
             <span class="openSideBar" style="color: white;">☰</span>
         </div>
-        <p class="genre">Comedy</p>
+        <p class="genre">Documentary</p>
     </nav>
 
     <div class="backdrop"></div>

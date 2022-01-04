@@ -36,7 +36,17 @@
 
                 // send all movies to the set event function 
                 setOriginalEvent(originals);
-                setHorrEvent(horror);
+                setHorrorEvent(horror);
+                setActionEvent(actionArr)
+                setAdventureEvent(adventure);
+                setComedyEvent(comedy);
+                setScifiEvent(scifi);
+                setCrimeEvent(crime);
+                setDramaEvent(drama);
+                setRomanceEvent(romance);
+                setDocEvent(doc);
+                
+
             },
             error: function(xhr, status, error){
                 console.error(xhr);
@@ -50,7 +60,7 @@
         drama.forEach((result) => {
             const content = `   
                     <div class="dramaRows"   id="dramaRows">
-                        <img id="img"  src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result.title}">
+                        <img id="img"  src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result['ID']}">
                     </div>
                 `;
                 
@@ -66,7 +76,7 @@
         doc.forEach((result) => {
             const content = `   
                     <div class="docRows"   id="docRows">
-                        <img id="img"  src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result.title}">
+                        <img id="img"  src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result['ID']}">
                     </div>
                 `;
                 
@@ -82,7 +92,7 @@
         crime.forEach((result) => {
             const content = `   
                     <div class="crimeRows"   id="crimeRows">
-                        <img id="img"  src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result.title}">
+                        <img id="img"  src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result['ID']}">
                     </div>
                 `;
                 
@@ -98,7 +108,7 @@
         scifi.forEach((result) => {
             const content = `   
                     <div class="scifiRows"   id="scifiRows">
-                        <img id="img"  src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result.title}">
+                        <img id="img"  src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result['ID']}">
                     </div>
                 `;
                 
@@ -114,7 +124,7 @@
         romance.forEach((result) => {
             const content = `   
                     <div class="romRows"   id="romRows">
-                        <img id="img"  src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result.title}">
+                        <img id="img"  src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result['ID']}">
                     </div>
                 `;
                 
@@ -146,7 +156,7 @@
         comedy.forEach((result) => {
             const content = `   
                     <div class="comRows"   id="comRows">
-                        <img id='${result['name']}'  src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px">
+                        <img id='${result['name']}'  src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result['ID']}">
                     </div>
                 `;
                 
@@ -165,7 +175,7 @@
         ad.forEach((result) => {
             const content = `   
                     <div class="adRows"   id="adRows">
-                        <img id="img"  src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result.title}">
+                        <img id="img"  src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result['ID']}">
                     </div>
                 `;
                 
@@ -183,7 +193,7 @@
         action.forEach((result) => {
             const content = `   
                     <div class="actionRows"   id="actionRows">
-                        <img id="img"  src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result.title}">
+                        <img id="img"  src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result['ID']}">
                     </div>
                 `;
                 
@@ -211,26 +221,260 @@
         getSlicky('.slider','.next','.prev');
         
     }
+    // set event lister to  the first netflix drama movie selected
+    function setDocEvent(allMovies){
 
-    
-// set event lister to originals
-function setHorrEvent(allMovies){
-    const displayMovie=document.querySelector('.playMovie');
-document.querySelectorAll(".horrRows").forEach(function(item){
-    item.addEventListener("click", function(e){
-        displayMovie.style.display='block';
-        console.log('this is the original row');
-        let movieId=e.target.alt;
-        console.log(allMovies);
-        let movieData=filterMovies(allMovies,movieId);
-        console.log(movieData);
+        // select all the containers required
+        const displayMovie=document.querySelector('.playMovieContainer');
+        let titleContainer=document.querySelector('.movieOverview');
+        let close=document.querySelector('.coverSelectedMovie');
+        document.querySelectorAll(".docRows").forEach(function(item){
+            item.addEventListener("click", function(e){
+
+                
+                let movieId=e.target.alt;
+                let movieData=filterMovies(allMovies,movieId);
+                let longOverview=movieData[0]['overview'];
+                let trailer=movieData[0]['trailers'];
+                let shortOverview=truncate(longOverview,150);
+                let showLeftMovies=leftMovies(allMovies,movieId);
+
+                displayMovie.style.display='block';
+                titleContainer.innerHTML=shortOverview;   
+                
+                // funcition declaration
+                embeedVideo(trailer);
+                createLeftMovies(showLeftMovies);
+                disable();
+                selectLeftMovies(showLeftMovies);
+                close.style.display='block';
+                
+            })
+        })
+    }
+    // set event lister to  the first netflix drama movie selected
+    function setDramaEvent(allMovies){
+
+        // select all the containers required
+        const displayMovie=document.querySelector('.playMovieContainer');
+        let titleContainer=document.querySelector('.movieOverview');
+        let close=document.querySelector('.coverSelectedMovie');
+        document.querySelectorAll(".dramaRows").forEach(function(item){
+            item.addEventListener("click", function(e){
+
+                
+                let movieId=e.target.alt;
+                let movieData=filterMovies(allMovies,movieId);
+                let longOverview=movieData[0]['overview'];
+                let trailer=movieData[0]['trailers'];
+                let shortOverview=truncate(longOverview,150);
+                let showLeftMovies=leftMovies(allMovies,movieId);
+
+                displayMovie.style.display='block';
+                titleContainer.innerHTML=shortOverview;   
+                
+                // funcition declaration
+                embeedVideo(trailer);
+                createLeftMovies(showLeftMovies);
+                disable();
+                selectLeftMovies(showLeftMovies);
+                close.style.display='block';
+                
+            })
+        })
+    }
+
+
+    // set event lister to  the first netflix romance movie selected
+    function setRomanceEvent(allMovies){
+
+        // select all the containers required
+        const displayMovie=document.querySelector('.playMovieContainer');
+        let titleContainer=document.querySelector('.movieOverview');
+        let close=document.querySelector('.coverSelectedMovie');
+        document.querySelectorAll(".romRows").forEach(function(item){
+            item.addEventListener("click", function(e){
+
+                
+                let movieId=e.target.alt;
+                let movieData=filterMovies(allMovies,movieId);
+                let longOverview=movieData[0]['overview'];
+                let trailer=movieData[0]['trailers'];
+                let shortOverview=truncate(longOverview,150);
+                let showLeftMovies=leftMovies(allMovies,movieId);
+
+                displayMovie.style.display='block';
+                titleContainer.innerHTML=shortOverview;   
+                
+                // funcition declaration
+                embeedVideo(trailer);
+                createLeftMovies(showLeftMovies);
+                disable();
+                selectLeftMovies(showLeftMovies);
+                close.style.display='block';
+                
+            })
+        })
+    }
+
+    // set event lister to  the first netflix sci fi movie selected
+    function setCrimeEvent(allMovies){
+
+        // select all the containers required
+        const displayMovie=document.querySelector('.playMovieContainer');
+        let titleContainer=document.querySelector('.movieOverview');
+        let close=document.querySelector('.coverSelectedMovie');
+        document.querySelectorAll(".crimeRows").forEach(function(item){
+            item.addEventListener("click", function(e){
+
+                
+                let movieId=e.target.alt;
+                let movieData=filterMovies(allMovies,movieId);
+                let longOverview=movieData[0]['overview'];
+                let trailer=movieData[0]['trailers'];
+                let shortOverview=truncate(longOverview,150);
+                let showLeftMovies=leftMovies(allMovies,movieId);
+
+                displayMovie.style.display='block';
+                titleContainer.innerHTML=shortOverview;   
+                
+                // funcition declaration
+                embeedVideo(trailer);
+                createLeftMovies(showLeftMovies);
+                disable();
+                selectLeftMovies(showLeftMovies);
+                close.style.display='block';
+                
+            })
+        })
+    }
+    // set event lister to  the first netflix sci fi movie selected
+    function setScifiEvent(allMovies){
+
+        // select all the containers required
+        const displayMovie=document.querySelector('.playMovieContainer');
+        let titleContainer=document.querySelector('.movieOverview');
+        let close=document.querySelector('.coverSelectedMovie');
+        document.querySelectorAll(".scifiRows").forEach(function(item){
+            item.addEventListener("click", function(e){
+
+                
+                let movieId=e.target.alt;
+                let movieData=filterMovies(allMovies,movieId);
+                let longOverview=movieData[0]['overview'];
+                let trailer=movieData[0]['trailers'];
+                let shortOverview=truncate(longOverview,150);
+                let showLeftMovies=leftMovies(allMovies,movieId);
+
+                displayMovie.style.display='block';
+                titleContainer.innerHTML=shortOverview;   
+                
+                // funcition declaration
+                embeedVideo(trailer);
+                createLeftMovies(showLeftMovies);
+                disable();
+                selectLeftMovies(showLeftMovies);
+                close.style.display='block';
+                
+            })
+        })
+    }
+
+    // set event lister to  the first netflix comedy movie selected
+    function setComedyEvent(allMovies){
+
+        // select all the containers required
+        const displayMovie=document.querySelector('.playMovieContainer');
+        let titleContainer=document.querySelector('.movieOverview');
+        let close=document.querySelector('.coverSelectedMovie');
+        document.querySelectorAll(".comRows").forEach(function(item){
+            item.addEventListener("click", function(e){
+
+                
+                let movieId=e.target.alt;
+                let movieData=filterMovies(allMovies,movieId);
+                let longOverview=movieData[0]['overview'];
+                let trailer=movieData[0]['trailers'];
+                let shortOverview=truncate(longOverview,150);
+                let showLeftMovies=leftMovies(allMovies,movieId);
+
+                displayMovie.style.display='block';
+                titleContainer.innerHTML=shortOverview;   
+                
+                // funcition declaration
+                embeedVideo(trailer);
+                createLeftMovies(showLeftMovies);
+                disable();
+                selectLeftMovies(showLeftMovies);
+                close.style.display='block';
+                
+            })
+        })
+    }
         
-    })
-    
-})
-}
+    // set event lister to  the first netflix adventure movie selected
+    function setAdventureEvent(allMovies){
 
+        // select all the containers required
+        const displayMovie=document.querySelector('.playMovieContainer');
+        let titleContainer=document.querySelector('.movieOverview');
+        let close=document.querySelector('.coverSelectedMovie');
+        document.querySelectorAll(".adRows").forEach(function(item){
+            item.addEventListener("click", function(e){
 
+                
+                let movieId=e.target.alt;
+                let movieData=filterMovies(allMovies,movieId);
+                let longOverview=movieData[0]['overview'];
+                let trailer=movieData[0]['trailers'];
+                let shortOverview=truncate(longOverview,150);
+                let showLeftMovies=leftMovies(allMovies,movieId);
+
+                displayMovie.style.display='block';
+                titleContainer.innerHTML=shortOverview;   
+                
+                // funcition declaration
+                embeedVideo(trailer);
+                createLeftMovies(showLeftMovies);
+                disable();
+                selectLeftMovies(showLeftMovies);
+                close.style.display='block';
+                
+            })
+        })
+    }
+
+    // set event lister to  the first netflix horror movie selected
+    function setHorrorEvent(allMovies){
+
+        // select all the containers required
+        const displayMovie=document.querySelector('.playMovieContainer');
+        let titleContainer=document.querySelector('.movieOverview');
+        let close=document.querySelector('.coverSelectedMovie');
+        document.querySelectorAll(".horrRows").forEach(function(item){
+            item.addEventListener("click", function(e){
+
+                  
+                let movieId=e.target.alt;
+                let movieData=filterMovies(allMovies,movieId);
+                let longOverview=movieData[0]['overview'];
+                let trailer=movieData[0]['trailers'];
+                let shortOverview=truncate(longOverview,150);
+                let showLeftMovies=leftMovies(allMovies,movieId);
+
+                displayMovie.style.display='block';
+                titleContainer.innerHTML=shortOverview;   
+                
+                // funcition declaration
+                embeedVideo(trailer);
+                createLeftMovies(showLeftMovies);
+                disable();
+                selectLeftMovies(showLeftMovies);
+                close.style.display='block';
+                
+            })
+        })
+    }
 
     // set event lister to  the first netflix original movie selected
     function setOriginalEvent(allMovies){
@@ -264,6 +508,38 @@ document.querySelectorAll(".horrRows").forEach(function(item){
         })
     }
 
+    // creating action and thriller
+    function setActionEvent(allMovies){
+
+        // select all the containers required
+        const displayMovie=document.querySelector('.playMovieContainer');
+        let titleContainer=document.querySelector('.movieOverview');
+        let close=document.querySelector('.coverSelectedMovie');
+        document.querySelectorAll(".actionRows").forEach(function(item){
+            item.addEventListener("click", function(e){
+
+                  
+                let movieId=e.target.alt;
+                let movieData=filterMovies(allMovies,movieId);
+                console.log(movieData);
+                let longOverview=movieData[0]['overview'];
+                let trailer=movieData[0]['trailers'];
+                let shortOverview=truncate(longOverview,150);
+                let showLeftMovies=leftMovies(allMovies,movieId);
+
+                displayMovie.style.display='block';
+                titleContainer.innerHTML=shortOverview;   
+                
+                // funcition declaration
+                embeedVideo(trailer);
+                createLeftMovies(showLeftMovies);
+                disable();
+                selectLeftMovies(showLeftMovies);
+                close.style.display='block';
+                
+            })
+        })
+    }
     // add youtbe video 
     function embeedVideo(id){
         const  originalContainer=document.querySelector('.playMovie');
@@ -306,7 +582,7 @@ document.querySelectorAll(".horrRows").forEach(function(item){
     // show the movies that are not selected
     function createLeftMovies(cards){
         const  originalContainer=document.querySelector('.movieCards');
-
+        originalContainer.innerHTML="";
         cards.forEach((result) => {
             const content = `   
                     <div class="rows"   id="rows"  style="position: relative;">
