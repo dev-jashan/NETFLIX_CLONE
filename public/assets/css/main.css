@@ -514,7 +514,27 @@ nav{
     background-color: rgba(0, 0, 0, 0.7);
     
 }
-.docNextBtn{
+.listNextBtn{
+    margin-left: 94%;
+}
+
+.listTitle p{
+    color: white;
+    font-size: 130%;
+}
+.listTitle{
+    margin-top: 2%;
+}
+.prevList,.nextList{
+    position: absolute;
+    color: white;
+    margin-top: -14%;
+    z-index: 1;
+    padding: 2%;
+    background-color: rgba(0, 0, 0, 0.7);
+    
+}
+.listNextBtn{
     margin-left: 94%;
 }
  /* this is the pop up movie styling  */
@@ -602,6 +622,12 @@ iframe{
 iframe{
     margin-top: 5%;
 }
+.frontVideo{
+   
+    height: 100vh;
+    width: 100vw;
+    margin-bottom: 5%;
+}
 /* all media queries*/
 @media screen and (max-width: 700px) {
     .prev,.next{
@@ -668,7 +694,13 @@ iframe{
     .docNextBtn{
         margin-left: 86%;
     }
-
+    .nextList,.prevList{
+        margin-top: -19%;
+        padding:2%;
+    }
+    .listNextBtn{
+        margin-left: 86%;
+    }
 
 }
 
@@ -752,6 +784,13 @@ iframe{
     .docNextBtn{
         font-size: 90%;
     }
+    .nextList,.prevList{
+        margin-top: -22%;
+        padding:2%;
+    }
+    .listNextBtn{
+        font-size: 90%;
+    }
 
 }
 @media screen and (max-width: 990px) {
@@ -785,7 +824,9 @@ iframe{
     .nextdoc,.prevdoc{
         margin-top: -17%;
     }
-    
+    .nextList,.prevList{
+        margin-top: -17%;
+    }
 }
 @media screen and (max-width: 1102px) {
     .prev,.next{
@@ -850,6 +891,12 @@ iframe{
         padding: 3.4%;
     }
     .docNextBtn{
+        margin-left: 91%;
+    }
+    .nextList,.prevList{
+        padding: 3.4%;
+    }
+    .listNextBtn{
         margin-left: 91%;
     }
 

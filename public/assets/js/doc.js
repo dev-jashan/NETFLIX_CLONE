@@ -188,13 +188,16 @@ function setDocEvent(allMovies){
             closeSideBar.style.display='block';  
             backdrop.classList.toggle('backdrop-active');
             sidebar.classList.toggle('sidebar-active');
-              
+            disable();
         })
         closeSideBar.addEventListener('click',()=>{
 
             backdrop.classList.remove('backdrop-active');
             sidebar.classList.remove('sidebar-active');
             closeSideBar.style.display='none';
+            window.onscroll = function() {
+                window.scrollTo(document.documentElement.scrollLeft, document.documentElement.scrollTop);
+            };
             
         })
     }

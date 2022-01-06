@@ -46,11 +46,14 @@ class MainController extends Controller{
         $get_animation=MainModel::getAnimation();
         $get_mystery=MainModel::getMystery();
         $get_documentaries=MainModel::getDocumentaries();
+        $getUserList=MainModel::getuserList();
+        $checkList=MainModel::checkList();
 
+        //print_r();
         // push all the movies with differet genres
         array_push($all_movies,$get_all_movies,$get_adventure,$get_action,$get_thriller,$get_comedy,$get_romance,$get_horror
                 ,  $get_originals,$get_science,$get_history,$get_drama,$get_tv_science,$get_tv_action,$get_tv_crime
-                ,$get_tv_family,$get_animation,$get_mystery,$get_documentaries );
+                ,$get_tv_family,$get_animation,$get_mystery,$get_documentaries,$getUserList,$checkList );
         
         // encode the array to json and send to frontend
         echo json_encode($all_movies); 

@@ -10,6 +10,7 @@
             
             success: function(data){
                 let movies=JSON.parse(data);
+                console.log(movies);
                 let allMovies=movies[0];
                 let originals=movies[7];
                 let actionArr=movies[2].concat(movies[3],movies[13]);
@@ -21,7 +22,9 @@
                 let crime=movies[13].concat(movies[15]);
                 let drama=movies[9].concat(movies[10]);
                 let doc=movies[17];
+                let listArr=[];
                 // send data to their respective funcitions
+                playFrontMovie(allMovies);
                 getAllMovies(allMovies);
                 getNetflixOriginals(originals);
                 getNetflixAction(actionArr);
@@ -34,6 +37,24 @@
                 getNetflixDrama(drama);
                 getNetflixDocumentaries(doc);
 
+               // listArr.push(filterMovies(allMovies,movies[18]['movie_ID']));
+                //console.log('this is the list'+listArr);
+                // if(movies[19]>0){
+                //     getNetflixList(movies[18]);    
+                // }
+                movies[18].forEach((result) => {
+                    let movieId=filterMovies(allMovies,result['movie_ID']);
+                    listArr.push(movieId);
+                    console.log(listArr);
+                })
+                if(movies[19]>0){
+                    document.querySelector('.hideList').style.display='block';
+                    getNetflixList(listArr); 
+                    setListEvent(allMovies);   
+                }else{
+                    document.querySelector('.hideList').style.display='none';
+                }
+                
                 // send all movies to the set event function 
                 setOriginalEvent(originals);
                 setHorrorEvent(horror);
@@ -46,12 +67,73 @@
                 setRomanceEvent(romance);
                 setDocEvent(doc);
                 
-
+           
             },
             error: function(xhr, status, error){
                 console.error(xhr);
+                
             }
         });
+    }
+
+
+    function playFrontMovie(allMovies){
+
+        //get element by id 
+        let playBtn=document.querySelector('.playBtn');
+        let getId=document.getElementById('movieId');
+        let frontvideoContainer=document.getElementById('frontImgContainer');
+        let frontImgContent=document.getElementById('frontImgContent');
+        let bottomContainer=document.getElementById('bottom-gradient');
+
+        // set event listner to the play button to play video
+        playBtn.addEventListener("click", function(){
+            frontImgContent.style.display='none';
+            bottomContainer.style.display='none';
+            frontvideoContainer.style.backgroundImage='none';
+            console.log(getId.innerHTML);
+            let getMovie=filterMovies(allMovies,getId.innerHTML)
+            console.log(getMovie);
+            let getmovieTrailer=getMovie[0]['trailers'];
+            console.log(getmovieTrailer);
+            const content = `   
+            <iframe class='frontVideo' src="https://www.youtube-nocookie.com/embed/${getmovieTrailer}?autoplay=1&mute=1&&modestbranding=1&autohide=1&showinfo=0" 
+                title="YouTube video player" frameborder="0"
+                allow="encrypted-media;picture-in-picture";"autoplay" 
+                allowfullscreen>
+                
+            </iframe>
+            `;
+            
+            frontvideoContainer.innerHTML += content;
+
+        })
+
+    }
+
+    function addToList(){
+        let listBtn=document.querySelector('.listBtn');
+        let getMovieId=document.querySelector('.movieId');
+
+        listBtn.addEventListener("click", function(){
+            console.log(getMovieId.innerHTML);
+            console.log('list button is clicked');
+            let userData = JSON.stringify(getMovieId.innerHTML);
+            $.ajax({
+            
+                type: "POST",
+                url: 'http://127.0.0.1:8080/php/NETFLIX_CLONE/list/yourList',
+                data: {data : userData},
+                success: function(data){
+                    console.log(data);
+                   
+                },
+                error: function(xhr, status, error){
+                    console.error(xhr);
+                }
+            });
+        })
+
     }
 
     //creating drama
@@ -221,6 +303,26 @@
         getSlicky('.slider','.next','.prev');
         
     }
+    //creating the list netflix row
+    function getNetflixList(list){
+       // console.log(list)
+       const  originalContainer=document.querySelector('.listSlider');
+        list.forEach((result) =>{
+            console.log(result);
+            result.forEach((id) =>{
+                const content = `   
+                     <div class="listRows"   id="listRows"  style="position: relative;">
+                         <img id="img" class="img"  style="position: relative;" src="https://image.tmdb.org/t/p/original${id['poster']}" width="200px" height="200px" alt="${id['ID']}">
+                     </div>
+                 `;
+                
+                originalContainer.innerHTML += content;
+            
+            })
+        })
+        getSlicky('.listSlider','.nextList','.prevList');    
+    }
+    
     // set event lister to  the first netflix drama movie selected
     function setDocEvent(allMovies){
 
@@ -236,6 +338,7 @@
                 let movieData=filterMovies(allMovies,movieId);
                 let longOverview=movieData[0]['overview'];
                 let trailer=movieData[0]['trailers'];
+                let setId=movieData[0]['ID'];
                 let shortOverview=truncate(longOverview,150);
                 let showLeftMovies=leftMovies(allMovies,movieId);
 
@@ -247,6 +350,7 @@
                 createLeftMovies(showLeftMovies);
                 disable();
                 selectLeftMovies(showLeftMovies);
+                setMovieId(setId);
                 close.style.display='block';
                 
             })
@@ -267,6 +371,7 @@
                 let movieData=filterMovies(allMovies,movieId);
                 let longOverview=movieData[0]['overview'];
                 let trailer=movieData[0]['trailers'];
+                let setId=movieData[0]['ID'];
                 let shortOverview=truncate(longOverview,150);
                 let showLeftMovies=leftMovies(allMovies,movieId);
 
@@ -278,12 +383,47 @@
                 createLeftMovies(showLeftMovies);
                 disable();
                 selectLeftMovies(showLeftMovies);
+                setMovieId(setId);
                 close.style.display='block';
                 
             })
         })
     }
 
+    // set event listner to the list row
+    function setListEvent(allMovies){
+
+        // select all the containers required
+        const displayMovie=document.querySelector('.playMovieContainer');
+        let titleContainer=document.querySelector('.movieOverview');
+        let close=document.querySelector('.coverSelectedMovie');
+        document.querySelectorAll(".listRows").forEach(function(item){
+            item.addEventListener("click", function(e){
+                
+                
+                let movieId=e.target.alt;
+                console.log(movieId);
+                let movieData=filterMovies(allMovies,movieId);
+                let longOverview=movieData[0]['overview'];
+                let trailer=movieData[0]['trailers'];
+                let setId=movieData[0]['ID'];
+                let shortOverview=truncate(longOverview,150);
+                let showLeftMovies=leftMovies(allMovies,movieId);
+
+                displayMovie.style.display='block';
+                titleContainer.innerHTML=shortOverview;   
+                
+                // funcition declaration
+                embeedVideo(trailer);
+                createLeftMovies(showLeftMovies);
+                disable();
+                selectLeftMovies(showLeftMovies);
+                setMovieId(setId);
+                close.style.display='block';
+                
+            })
+        })
+    }
 
     // set event lister to  the first netflix romance movie selected
     function setRomanceEvent(allMovies){
@@ -300,6 +440,7 @@
                 let movieData=filterMovies(allMovies,movieId);
                 let longOverview=movieData[0]['overview'];
                 let trailer=movieData[0]['trailers'];
+                let setId=movieData[0]['ID'];
                 let shortOverview=truncate(longOverview,150);
                 let showLeftMovies=leftMovies(allMovies,movieId);
 
@@ -311,6 +452,7 @@
                 createLeftMovies(showLeftMovies);
                 disable();
                 selectLeftMovies(showLeftMovies);
+                setMovieId(setId);
                 close.style.display='block';
                 
             })
@@ -332,6 +474,7 @@
                 let movieData=filterMovies(allMovies,movieId);
                 let longOverview=movieData[0]['overview'];
                 let trailer=movieData[0]['trailers'];
+                let setId=movieData[0]['ID'];
                 let shortOverview=truncate(longOverview,150);
                 let showLeftMovies=leftMovies(allMovies,movieId);
 
@@ -343,6 +486,7 @@
                 createLeftMovies(showLeftMovies);
                 disable();
                 selectLeftMovies(showLeftMovies);
+                setMovieId(setId);
                 close.style.display='block';
                 
             })
@@ -363,6 +507,7 @@
                 let movieData=filterMovies(allMovies,movieId);
                 let longOverview=movieData[0]['overview'];
                 let trailer=movieData[0]['trailers'];
+                let setId=movieData[0]['ID'];
                 let shortOverview=truncate(longOverview,150);
                 let showLeftMovies=leftMovies(allMovies,movieId);
 
@@ -374,6 +519,7 @@
                 createLeftMovies(showLeftMovies);
                 disable();
                 selectLeftMovies(showLeftMovies);
+                setMovieId(setId);
                 close.style.display='block';
                 
             })
@@ -395,6 +541,7 @@
                 let movieData=filterMovies(allMovies,movieId);
                 let longOverview=movieData[0]['overview'];
                 let trailer=movieData[0]['trailers'];
+                let setId=movieData[0]['ID'];
                 let shortOverview=truncate(longOverview,150);
                 let showLeftMovies=leftMovies(allMovies,movieId);
 
@@ -406,6 +553,7 @@
                 createLeftMovies(showLeftMovies);
                 disable();
                 selectLeftMovies(showLeftMovies);
+                setMovieId(setId);
                 close.style.display='block';
                 
             })
@@ -427,6 +575,7 @@
                 let movieData=filterMovies(allMovies,movieId);
                 let longOverview=movieData[0]['overview'];
                 let trailer=movieData[0]['trailers'];
+                let setId=movieData[0]['ID'];
                 let shortOverview=truncate(longOverview,150);
                 let showLeftMovies=leftMovies(allMovies,movieId);
 
@@ -438,6 +587,7 @@
                 createLeftMovies(showLeftMovies);
                 disable();
                 selectLeftMovies(showLeftMovies);
+                setMovieId(setId);
                 close.style.display='block';
                 
             })
@@ -459,6 +609,7 @@
                 let movieData=filterMovies(allMovies,movieId);
                 let longOverview=movieData[0]['overview'];
                 let trailer=movieData[0]['trailers'];
+                let setId=movieData[0]['ID'];
                 let shortOverview=truncate(longOverview,150);
                 let showLeftMovies=leftMovies(allMovies,movieId);
 
@@ -470,6 +621,7 @@
                 createLeftMovies(showLeftMovies);
                 disable();
                 selectLeftMovies(showLeftMovies);
+                setMovieId(setId);;
                 close.style.display='block';
                 
             })
@@ -491,6 +643,7 @@
                 let movieData=filterMovies(allMovies,movieId);
                 let longOverview=movieData[0]['overview'];
                 let trailer=movieData[0]['trailers'];
+                let setId=movieData[0]['ID'];
                 let shortOverview=truncate(longOverview,150);
                 let showLeftMovies=leftMovies(allMovies,movieId);
 
@@ -502,6 +655,7 @@
                 createLeftMovies(showLeftMovies);
                 disable();
                 selectLeftMovies(showLeftMovies);
+                setMovieId(setId);
                 close.style.display='block';
                 
             })
@@ -524,6 +678,7 @@
                 console.log(movieData);
                 let longOverview=movieData[0]['overview'];
                 let trailer=movieData[0]['trailers'];
+                let setId=movieData[0]['ID'];
                 let shortOverview=truncate(longOverview,150);
                 let showLeftMovies=leftMovies(allMovies,movieId);
 
@@ -535,6 +690,7 @@
                 createLeftMovies(showLeftMovies);
                 disable();
                 selectLeftMovies(showLeftMovies);
+                setMovieId(setId);
                 close.style.display='block';
                 
             })
@@ -545,7 +701,7 @@
         const  originalContainer=document.querySelector('.playMovie');
         originalContainer.innerHTML="";
         const content = `   
-                <iframe class='player' src="https://www.youtube.com/embed/${id}" 
+                <iframe class='player' src="https://www.youtube-nocookie.com/embed/${id}" 
                     title="YouTube video player" frameborder="0"
                     allow="encrypted-media;picture-in-picture" 
                     allowfullscreen>
@@ -555,7 +711,7 @@
             originalContainer.innerHTML += content;
     }
 
-    // disabel scroll
+    // disabel scroll when selected a movie
     function disable() {
         // To get the scroll position of current webpage
         TopScroll = window.pageYOffset || document.documentElement.scrollTop;
@@ -606,9 +762,11 @@
                 let movieData=filterMovies(allMovies,movieId);
                 let longOverview=movieData[0]['overview'];
                 let trailer=movieData[0]['trailers'];
+                let setId=movieData[0]['ID'];
                 let shortOverview=truncate(longOverview,150);
                 titleContainer.innerHTML=shortOverview;   
                 embeedVideo(trailer);
+                setMovieId(setId);
             })
         })
     }
@@ -627,6 +785,7 @@
         let imgUrl=randomMovie['backdrop_path'];
         let overview=randomMovie['overview'];
         let movieName=randomMovie['name'];
+        let getMovieId=randomMovie['ID'];
         let url=`https://image.tmdb.org/t/p/original${imgUrl}`;
         let shortOverview=truncate(overview,150);
         console.log(shortOverview);
@@ -636,8 +795,10 @@
         imgContainer.style.backgroundImage=`url(${url})`;
         let overviewContainer=document.getElementById("overview");
         let title=document.getElementById("title");
+        let setMovieId=document.getElementById("movieId");
 
         // setting inner html of the html elements
+        setMovieId.innerHTML=getMovieId;
         overviewContainer.innerHTML=shortOverview;        
         title.innerHTML=movieName;
     }
@@ -680,6 +841,7 @@
             closeSideBar.style.display='block';  
             backdrop.classList.toggle('backdrop-active');
             sidebar.classList.toggle('sidebar-active');
+            disable();
               
         })
         closeSideBar.addEventListener('click',()=>{
@@ -687,6 +849,9 @@
             backdrop.classList.remove('backdrop-active');
             sidebar.classList.remove('sidebar-active');
             closeSideBar.style.display='none';
+            window.onscroll = function() {
+                window.scrollTo(document.documentElement.scrollLeft, document.documentElement.scrollTop);
+            };
             
         })
     }
@@ -707,7 +872,10 @@
         })
         
     }
-
+    function setMovieId(id){
+        let setId=document.getElementById('movieId');
+        setId.innerHTML=id;
+    }
     // make a carasoul 
     function getSlicky(className,nextBtn,prevBtn){
         $(document).ready(function() {
@@ -764,6 +932,7 @@
         window.onscroll = function() {navBarLogic()};
         moviesDb();
         closeMovie();
+      
         
     }
 
@@ -771,6 +940,8 @@
         console.log('this is the main page of the application');
         init();
         sidebarLogic()
+        addToList();
+
         
     });
 

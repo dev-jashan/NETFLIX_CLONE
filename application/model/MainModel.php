@@ -113,6 +113,14 @@ class MainModel{
       return DatabaseFactory::getFactory()->query('SELECT * FROM all_netflix  WHERE genre_id=?',99)->fetchAll();
    }
 
-
-
+   // to get all the list of the user
+   public static function getuserList()
+   {
+      return DatabaseFactory::getFactory()->query('SELECT * FROM netflix_list  GROUP BY movie_ID')->fetchAll();
+   }
+   // check if their is noting adding in the list
+   public static function checkList()
+   {
+      return DatabaseFactory::getFactory()->query('SELECT * FROM netflix_list')->numRows();
+   }
 }

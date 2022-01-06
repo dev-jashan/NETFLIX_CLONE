@@ -1,6 +1,7 @@
 
 <!--  creating  play container-->
 <div class="playMovieContainer">
+    <p id="movieId" class="movieId" style="display: none;"></p>
     <div class="playMovie"></div>
     <div class="descriptionContainer">
         <ul class="ratingContainer">
@@ -12,9 +13,9 @@
         <div class="overviewContainer"><p class="movieOverview"></p></div>
     </div>
     <div class="symbol">
-        <i class="fa fa-plus"></i>
-        <i class="fa fa-thumbs-up"></i>
-        <i class="fa fa-download"></i>
+        <i class="fa fa-plus listBtn"  id="listBtn"></i>
+        <i class="fa fa-thumbs-up liked"></i>
+        <i class="fa fa-download download"></i>
     </div>
     <div class="movieCardsContainer">
         <div class="movieCards"></div>
@@ -23,15 +24,16 @@
 
 <!--  creating the front big image -->
 <div class="frontImgContainer" id="frontImgContainer">
-    <div class="frontImgContent">   
+    <div class="frontImgContent" id="frontImgContent">   
         <h1 class="title" id="title"></h1>
+        <p id="movieId" style="display: none;"></p>
         <div class="frontbuttons">
-            <a href="" class="playBtn"><i class="fa fa-play"></i>Play</a>
-            <a href="" class="listBtn"><i class="fa fa-plus"></i>List</a>
+            <a href="#play" class="playBtn"><i class="fa fa-play"></i>Play</a>
+            <a href="#add" class="listBtn" id="listBtn"><i class="fa fa-plus"></i>List</a>
         </div>
         <h1 class="overview" id="overview"></h1> 
     </div>
-    <div class="bottom-gradient"></div>
+    <div class="bottom-gradient" id="bottom-gradient"></div>
 </div>
 
 <!-- creating the rows images -->
@@ -113,6 +115,15 @@
 <div class="docNextBtn"><i class="fa fa-chevron-right nextdoc"></i></div>
 <div class="docPrevBtn"><i class="fa fa-chevron-left prevdoc"></i></div>
 <div class="accessable" id="accessable"></div>
+
+<!-- list row -->
+<div class="hideList">
+<div class="listTitle"><p> your List</p></div>
+<div class="listSlider" id="listContainer"></div>
+<div class="listNextBtn"><i class="fa fa-chevron-right nextList"></i></div>
+<div class="listPrevBtn"><i class="fa fa-chevron-left prevList"></i></div>
+<div class="accessable" id="accessable"></div>
 <div class="coverSelectedMovie" id="coverSelectedMovie"></div>
+</div>
 <!--  create div to cover whole page when clicked the movie -->
 
