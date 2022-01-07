@@ -188,4 +188,16 @@ class View{
         require Config::get('PATH_VIEW') . $filename . '.php';
         require Config::get('PATH_VIEW') . 'template/comedy-foot.php';
     }
+    public function renderDownload($filename, $data = null)                     
+    {
+        if ($data) {
+            foreach ($data as $key => $value) {
+                $this->{$key} = $value;
+            }
+        }
+
+        require Config::get('PATH_VIEW') . 'template/download-head.php';
+        require Config::get('PATH_VIEW') . $filename . '.php';
+        require Config::get('PATH_VIEW') . 'template/download-foot.php';
+    }
 }

@@ -1,5 +1,6 @@
 <!--  creating  play container-->
 <div class="playMovieContainer">
+    <p id="movieId" class="movieId" style="display: none;"></p>
     <div class="playMovie"></div>
     <div class="descriptionContainer">
         <ul class="ratingContainer">
@@ -11,14 +12,15 @@
         <div class="overviewContainer"><p class="movieOverview"></p></div>
     </div>
     <div class="symbol">
-        <i class="fa fa-plus"></i>
-        <i class="fa fa-thumbs-up"></i>
-        <i class="fa fa-download"></i>
+        <i class="fa fa-plus listBtn"  id="listBtn"></i>
+        <i class="fa fa-thumbs-up liked"></i>
+        <i class="fa fa-download download"></i>
     </div>
     <div class="movieCardsContainer">
         <div class="movieCards"></div>
     </div>
 </div>
+
 <div class="coverSelectedMovie" id="coverSelectedMovie"></div>
 <div class="accessable"></div>
 <div class="movies-Container">

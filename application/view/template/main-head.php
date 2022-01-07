@@ -37,7 +37,7 @@
                 <a href="">Notifications   ></a>
             </div>
             <div class="styleDownload">
-                <i class="fa fa-download"></i><a href="">My Downloads</a>
+                <i class="fa fa-download"></i><a href="<?= $root_url?>download/index">My Downloads</a>
             </div>
            
             <li class="sidebar-item">

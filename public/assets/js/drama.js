@@ -87,12 +87,37 @@ function setDramaEvent(allMovies){
             createLeftMovies(showLeftMovies);
             disable();
             selectLeftMovies(showLeftMovies);
+            setMovieId(movieId);
             close.style.display='block';
             
         })
     })
 }
+function addToList(){
+    let listBtn=document.querySelector('.listBtn');
+    let getMovieId=document.querySelector('.movieId');
 
+    listBtn.addEventListener("click", function(){
+        console.log(getMovieId.alt);
+        console.log('list button is clicked');
+        let userData = JSON.stringify(getMovieId.innerHTML);
+        console.log(userData);
+        $.ajax({
+        
+            type: "POST",
+            url: 'http://127.0.0.1:8080/php/NETFLIX_CLONE/list/yourList',
+            data: {data : userData},
+            success: function(data){
+                console.log(data);
+               
+            },
+            error: function(xhr, status, error){
+                console.error(xhr);
+            }
+        });
+    })
+
+}
 
     function getNetflixDrama(drama){
         const  originalContainer=document.querySelector('.movies-Container');
@@ -137,6 +162,7 @@ function setDramaEvent(allMovies){
             let trailer=movieData[0]['trailers'];
             let shortOverview=truncate(longOverview,150);
             titleContainer.innerHTML=shortOverview;   
+            setMovieId(movieId);
             embeedVideo(trailer);
         })
     })
@@ -204,7 +230,10 @@ function setDramaEvent(allMovies){
         })
     }
     
- 
+    function setMovieId(id){
+        let setId=document.getElementById('movieId');
+        setId.innerHTML=id;
+    }
     function init(){    
         window.onscroll = function() {navBarLogic()};
         moviesDb();
@@ -215,7 +244,7 @@ function setDramaEvent(allMovies){
         console.log('this is the main page of the application');
         init();
         sidebarLogic();
-        
+        addToList();
         
     });
 
