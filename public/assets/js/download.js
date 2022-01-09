@@ -6,17 +6,13 @@
         $.ajax({
 
             type: "GET",
-            url: 'http://127.0.0.1:8080/php/NETFLIX_CLONE/main/allNetfix',
+            url: 'http://127.0.0.1:8080/php/NETFLIX_CLONE/download/sendDownload',
 
             success: function(data) {
                 let movies = JSON.parse(data);
-                let allMovies = movies[0];
-                let drama = movies[9].concat(movies[10]);
-                console.log(allMovies);
-                // send data to their respective funcitions
-                //getAllMovies(allMovies);
-                getNetflixDrama(drama);
-                setDramaEvent(drama);
+               
+                getNetflixDownload(movies);
+                setDramaEvent(movies);
 
             },
             error: function(xhr, status, error) {
@@ -25,19 +21,17 @@
         });
     }
 
-
-    // get selected movie
-    function filterMovies(allMovies, movieId) {
-        let findMovie = allMovies.filter(element => element['ID'] == movieId);
-        return findMovie;
-    }
-
+   
     // movie not selected
     function leftMovies(allMovies, movieId) {
-        let findMovie = allMovies.filter(element => element['ID'] != movieId);
+        let findMovie = allMovies.filter(element => element[0]['ID'] != movieId);
+      
         return findMovie;
     }
-
+    function filterMovies(allMovies,movieId){
+        let findMovie=allMovies.filter(element=>element[0]['ID']==movieId);  
+        return findMovie;
+    }
     function disable() {
         // To get the scroll position of current webpage
         TopScroll = window.pageYOffset || document.documentElement.scrollTop;
@@ -64,31 +58,7 @@
     }
 
     // add data to the list
-    function addToList(){
-        let listBtn=document.querySelector('.listBtn');
-        let getMovieId=document.querySelector('.movieId');
 
-        listBtn.addEventListener("click", function(){
-            console.log(getMovieId.alt);
-            console.log('list button is clicked');
-            let userData = JSON.stringify(getMovieId.innerHTML);
-            console.log(userData);
-            $.ajax({
-            
-                type: "POST",
-                url: 'http://127.0.0.1:8080/php/NETFLIX_CLONE/list/yourList',
-                data: {data : userData},
-                success: function(data){
-                    console.log(data);
-                   
-                },
-                error: function(xhr, status, error){
-                    console.error(xhr);
-                }
-            });
-        })
-
-    }
     // set event lister to  the first netflix drama movie selected
     function setDramaEvent(allMovies) {
 
@@ -101,9 +71,13 @@
 
 
                 let movieId = e.target.alt;
+                
                 let movieData = filterMovies(allMovies, movieId);
-                let longOverview = movieData[0]['overview'];
-                let trailer = movieData[0]['trailers'];
+                
+                console.log(movieData);
+                let longOverview = movieData[0][0]['overview'];
+                console.log(longOverview);
+                let trailer = movieData[0][0]['trailers'];
                 let shortOverview = truncate(longOverview, 150);
                 let showLeftMovies = leftMovies(allMovies, movieId);
 
@@ -123,16 +97,23 @@
     }
 
 
-    function getNetflixDrama(drama) {
+    function getNetflixDownload(download) {
         const originalContainer = document.querySelector('.movies-Container');
-        drama.forEach((result) => {
-            const content = `   
-                    <div class="dramaRows"   id="dramaRows">
-                        <img id="img" class="img" src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result['ID']}">
-                    </div>
+        download.forEach((result) => {
+            result.forEach((yourDownload) => {
+
+               // console.log(yourDownload);
+                 const content = `   
+                <div class="dramaRows"   id="dramaRows">
+                    <img id="img"  src="https://image.tmdb.org/t/p/original${yourDownload['poster']}" width="200px" height="200px" alt="${yourDownload['ID']}">
+                </div>     
                 `;
 
-            originalContainer.innerHTML += content;
+                originalContainer.innerHTML += content;
+
+            })
+           
+            
         })
 
     }
@@ -142,14 +123,15 @@
         const originalContainer = document.querySelector('.movieCards');
         originalContainer.innerHTML = "";
         cards.forEach((result) => {
-            const content = `   
-                <div class="rows"   id="rows"  style="position: relative;">
-                    <img id="img" class="img"  style="position: relative;" src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result['ID']}">
-                </div>
-            `;
+            result.forEach((showCards) => {
+                const content = `   
+                    <div class="rows"   id="rows"  style="position: relative;">
+                        <img id="img" class="img"  style="position: relative;" src="https://image.tmdb.org/t/p/original${showCards['poster']}" width="200px" height="200px" alt="${showCards['ID']}">
+                    </div>
+                `;
 
-            originalContainer.innerHTML += content;
-
+                originalContainer.innerHTML += content;
+            }) 
         })
     }
 
@@ -162,8 +144,9 @@
                 let movieId = e.target.alt;
                 console.log(movieId)
                 let movieData = filterMovies(allMovies, movieId);
-                let longOverview = movieData[0]['overview'];
-                let trailer = movieData[0]['trailers'];
+                let longOverview = movieData[0][0]['overview'];
+                let trailer = movieData[0][0]['trailers'];
+                console.log(trailer);
                 let shortOverview = truncate(longOverview, 150);
                 titleContainer.innerHTML = shortOverview;
                 embeedVideo(trailer);
@@ -191,6 +174,8 @@
         })
 
     }
+   // get selected movie
+
 
     // if the overview is bigger then replace words with ...
     function truncate(str, n) {
@@ -249,7 +234,7 @@
         console.log('this is the main page of the application');
         init();
         sidebarLogic();
-        addToList();
+
 
 
     });

@@ -72,6 +72,7 @@ function setComedyEvent(allMovies){
 
             
             let movieId=e.target.alt;
+            console.log(movieId);
             let movieData=filterMovies(allMovies,movieId);
             let longOverview=movieData[0]['overview'];
             let trailer=movieData[0]['trailers'];
@@ -94,7 +95,10 @@ function setComedyEvent(allMovies){
     })
 }
 
-
+function setMovieId(id){
+    let setId=document.getElementById('movieId');
+    setId.innerHTML=id;
+}
     function getNetflixComedy(comedy){
         const  originalContainer=document.querySelector('.movies-Container');
         comedy.forEach((result) => {
@@ -168,7 +172,33 @@ function addToList(){
         });
     })
 
-}
+}   
+
+     // add movie to download
+     function addToDownload(){
+        let downloadBtn=document.querySelector('.downloadBtn');
+        let getMovieId=document.querySelector('.movieId');
+
+        downloadBtn.addEventListener("click", function(){
+            console.log(getMovieId.innerHTML);
+            console.log('download button is clicked');
+            let userData = JSON.stringify(getMovieId.innerHTML);
+            console.log(userData);
+            $.ajax({
+            
+                type: "POST",
+                url: 'http://127.0.0.1:8080/php/NETFLIX_CLONE/download/yourDownload',
+                data: {data : userData},
+                success: function(data){
+                    console.log(data);
+                   
+                },
+                error: function(xhr, status, error){
+                    console.error(xhr);
+                }
+            });
+        })
+    }
         // close a movie
         function closeMovie(){
             let close=document.querySelector('.coverSelectedMovie');
@@ -232,10 +262,7 @@ function addToList(){
         })
     }
     
-    function setMovieId(id){
-        let setId=document.getElementById('movieId');
-        setId.innerHTML=id;
-    }
+    
     function init(){    
         window.onscroll = function() {navBarLogic()};
         moviesDb();
@@ -247,7 +274,7 @@ function addToList(){
         init();
         sidebarLogic();
         addToList();
-        
+        addToDownload();
     });
 
 

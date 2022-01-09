@@ -148,6 +148,31 @@ function addToList(){
         
     }) 
 }
+ // add movie to download
+ function addToDownload(){
+    let downloadBtn=document.querySelector('.downloadBtn');
+    let getMovieId=document.querySelector('.movieId');
+
+    downloadBtn.addEventListener("click", function(){
+        console.log(getMovieId.innerHTML);
+        console.log('download button is clicked');
+        let userData = JSON.stringify(getMovieId.innerHTML);
+        console.log(userData);
+        $.ajax({
+        
+            type: "POST",
+            url: 'http://127.0.0.1:8080/php/NETFLIX_CLONE/download/yourDownload',
+            data: {data : userData},
+            success: function(data){
+                console.log(data);
+               
+            },
+            error: function(xhr, status, error){
+                console.error(xhr);
+            }
+        });
+    })
+}
 
  // to select a movie that is not selected before 
  function selectLeftMovies(allMovies){
@@ -245,7 +270,7 @@ function addToList(){
         init();
         sidebarLogic();
         addToList();
-        
+        addToDownload();
     });
 
 

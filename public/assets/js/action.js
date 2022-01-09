@@ -184,6 +184,32 @@ function setAdEvent(allMovies){
         
         
     }
+     // add movie to download
+     function addToDownload(){
+        let downloadBtn=document.querySelector('.downloadBtn');
+        let getMovieId=document.querySelector('.movieId');
+
+        downloadBtn.addEventListener("click", function(){
+            console.log(getMovieId.innerHTML);
+            console.log('download button is clicked');
+            let userData = JSON.stringify(getMovieId.innerHTML);
+            console.log(userData);
+            $.ajax({
+            
+                type: "POST",
+                url: 'http://127.0.0.1:8080/php/NETFLIX_CLONE/download/yourDownload',
+                data: {data : userData},
+                success: function(data){
+                    console.log(data);
+                   
+                },
+                error: function(xhr, status, error){
+                    console.error(xhr);
+                }
+            });
+        })
+    }
+
     function addToList(){
         let listBtn=document.querySelector('.listBtn');
         let getMovieId=document.querySelector('.movieId');
@@ -247,7 +273,7 @@ function setAdEvent(allMovies){
         init();
         sidebarLogic();
         addToList();
-        
+        addToDownload();
         
     });
 

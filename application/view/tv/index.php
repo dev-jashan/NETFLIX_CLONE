@@ -14,7 +14,7 @@
     <div class="symbol">
         <i class="fa fa-plus listBtn"  id="listBtn"></i>
         <i class="fa fa-thumbs-up liked"></i>
-        <i class="fa fa-download download"></i>
+        <i class="fa fa-download downloadBtn"></i>
     </div>
     <div class="movieCardsContainer">
         <div class="movieCards"></div>

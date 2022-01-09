@@ -1,6 +1,11 @@
 /* title */
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 .genre{
-    color: white;
+    color: rgba(245, 245, 245, 0.603);
     font-size: 220%;
     margin-top: 1%;
     padding-left: 5%;
@@ -8,8 +13,10 @@
 }
 /*  nav styling */
 nav{
-    background-color: black;
+    background-color: rgb(15, 15, 15);
     padding:1rem;
+    position: fixed;
+    width: 100%;
 }
 
 /* styling cards */
@@ -45,3 +52,37 @@ nav{
 }
 
 
+/* download */
+.noDownloadContainer{
+   
+   margin-left: 23%;
+ 
+}
+.noDownloadContainer img{
+    width: 51vw;
+    height: 50vh;
+    margin-top: 10%;
+
+   
+}
+.backToHome{
+    margin-top: 2%;
+}
+.backToHome a{
+    padding: 1%;
+    background-color: rgb(116, 116, 116);
+    font-size: 140%;
+    width: 50%;
+    color: white;
+    text-decoration: none;
+    margin-left: 13%;
+}
+.download-Container{
+    display: inline-flex;
+    margin-top: 14%;
+    margin-left: 10%;
+}
+.download-movies{
+   display: flex;
+   width: 100%;
+}
