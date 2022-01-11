@@ -13,8 +13,11 @@
     </div>
     <div class="symbol">
         <i class="fa fa-plus listBtn"  id="listBtn"></i>
+        <span style="color: white;">My list</span>
         <i class="fa fa-thumbs-up liked"></i>
+        <span style="color: white;">Rate</span>
         <i class="fa fa-download downloadBtn"></i>
+        <span style="color: white;">Download</span>
     </div>
     <div class="movieCardsContainer">
         <div class="movieCards"></div>

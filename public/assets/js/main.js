@@ -37,20 +37,14 @@
                 getNetflixDrama(drama);
                 getNetflixDocumentaries(doc);
 
-               // listArr.push(filterMovies(allMovies,movies[18]['movie_ID']));
-                //console.log('this is the list'+listArr);
-                // if(movies[19]>0){
-                //     getNetflixList(movies[18]);    
-                // }
-                movies[18].forEach((result) => {
-                    let movieId=filterMovies(allMovies,result['movie_ID']);
-                    listArr.push(movieId);
-                    console.log(listArr);
+                movies[18].forEach((result) => {    
+                    console.log(result);
                 })
-                if(movies[19]>0){
+
+                if(movies[18].length>0){
                     document.querySelector('.hideList').style.display='block';
-                    getNetflixList(listArr); 
-                    setListEvent(allMovies);   
+                    getNetflixList(movies[18]); 
+                    setListEvent(movies[18]);   
                 }else{
                     document.querySelector('.hideList').style.display='none';
                 }
@@ -65,9 +59,7 @@
                 setCrimeEvent(crime);
                 setDramaEvent(drama);
                 setRomanceEvent(romance);
-                setDocEvent(doc);
-                
-           
+                setDocEvent(doc);   
             },
             error: function(xhr, status, error){
                 console.error(xhr);
@@ -377,7 +369,6 @@
                 selectLeftMovies(showLeftMovies);
                 setMovieId(setId);
                 close.style.display='block';
-                
             })
         })
     }
@@ -425,29 +416,32 @@
         document.querySelectorAll(".listRows").forEach(function(item){
             item.addEventListener("click", function(e){
                 
-                
+                console.log(allMovies);
                 let movieId=e.target.alt;
                 console.log(movieId);
-                let movieData=filterMovies(allMovies,movieId);
-                let longOverview=movieData[0]['overview'];
-                let trailer=movieData[0]['trailers'];
-                let setId=movieData[0]['ID'];
+                let movieData=filterList(allMovies,movieId);
+                console.log(movieData);
+                let longOverview=movieData[0][0]['overview'];
+                let trailer=movieData[0][0]['trailers'];
+                let setId=movieData[0][0]['ID'];
                 let shortOverview=truncate(longOverview,150);
-                let showLeftMovies=leftMovies(allMovies,movieId);
 
                 displayMovie.style.display='block';
                 titleContainer.innerHTML=shortOverview;   
-                
-                // funcition declaration
+
                 embeedVideo(trailer);
-                createLeftMovies(showLeftMovies);
                 disable();
-                selectLeftMovies(showLeftMovies);
                 setMovieId(setId);
                 close.style.display='block';
                 
             })
         })
+    }
+
+    // filter movie list
+    function filterList(allMovies,movieId){
+        let findMovie=allMovies.filter(element=>element[0]['ID']==movieId);  
+        return findMovie;
     }
 
     // set event lister to  the first netflix romance movie selected
@@ -669,23 +663,37 @@
                 let longOverview=movieData[0]['overview'];
                 let trailer=movieData[0]['trailers'];
                 let setId=movieData[0]['ID'];
+                console.log(setId);
                 let shortOverview=truncate(longOverview,150);
                 let showLeftMovies=leftMovies(allMovies,movieId);
-
                 displayMovie.style.display='block';
                 titleContainer.innerHTML=shortOverview;   
-                
-                // funcition declaration
+                //createLiked(movieId,likedMovie);
                 embeedVideo(trailer);
                 createLeftMovies(showLeftMovies);
                 disable();
                 selectLeftMovies(showLeftMovies);
-                setMovieId(setId);
                 close.style.display='block';
                 
             })
         })
     }
+
+    /** the liked button is undner construction */
+
+    // function createLiked(setId,likedMovie){
+    //     //let findMovie=allMovies.filter(element=>element[0]['ID']==movieId);  
+    //     likeBtn=document.getElementById('liked')
+    //     likedMovie.forEach((result) => {
+    //         console.log(result['like_id']);
+    //         if(setId===result['like_id']){
+    //             likeBtn.style.color='red';
+    //         }else{
+    //             likeBtn.style.color='white';
+    //         }
+    //     }); 
+    // }
+
 
     // creating action and thriller
     function setActionEvent(allMovies){
@@ -721,6 +729,33 @@
             })
         })
     }
+
+    // send all the movies liked by user
+    function addToLiked(){
+        let downloadBtn=document.querySelector('.liked');
+        let getMovieId=document.querySelector('.movieId');
+
+        downloadBtn.addEventListener("click", function(e){
+            
+            console.log('like button is clicked');
+            let userData = JSON.stringify(getMovieId.innerHTML);
+            console.log(getMovieId.innerHTML);
+            $.ajax({
+            
+                type: "POST",
+                url: 'http://127.0.0.1:8080/php/NETFLIX_CLONE/main/sendLiked',
+                data: {data : userData},
+                success: function(data){
+                    console.log(data);
+                   
+                },
+                error: function(xhr, status, error){
+                    console.error(xhr);
+                }
+            });
+        })
+    }
+
     // add youtbe video 
     function embeedVideo(id){
         const  originalContainer=document.querySelector('.playMovie');
@@ -951,24 +986,20 @@
               });
         });  
     }
-
     
     function init(){    
         window.onscroll = function() {navBarLogic()};
         moviesDb();
         closeMovie();
-      
-        
+        addToLiked();
     }
-
+    
     document.addEventListener("DOMContentLoaded", function (){
         console.log('this is the main page of the application');
         init();
         sidebarLogic()
         addToList();
-        addToDownload();
-
-        
+        addToDownload();   
     });
 
 

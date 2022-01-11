@@ -24,9 +24,16 @@ class Application{
        
         $this->splitUrl();
         $this->createControllerAndActionNames();
-      
-        //session_destroy();
-      if (file_exists(Config::get('PATH_CONTROLLER') . $this->controller_name . '.php')) {
+        session_start();
+
+       
+        if(!($this->controller_name == 'LoginController' || $this->controller_name == 'PlanController'|| $this->controller_name == 'RegisterController'
+            || $this->controller_name == 'CheckoutController'|| $this->controller_name == 'IndexController')&& !isset($_SESSION['userId'])){
+
+            header('Location: http://127.0.0.1:8080/php/NETFLIX_CLONE/index/index');
+            
+        
+        }elseif(file_exists(Config::get('PATH_CONTROLLER') . $this->controller_name . '.php')) {
                 // load this file and create this controller
                 // example: if controller would be "car", then this line would translate into: $this->car = new car();
                 require_once Config::get('PATH_CONTROLLER') . $this->controller_name . '.php';

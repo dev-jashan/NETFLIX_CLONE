@@ -66,7 +66,7 @@ $(function(){
             userDataArr.push(sendEmail,sendPass);
             let userData = JSON.stringify(userDataArr);
 
-            window.history.forward();
+           // window.history.forward();
 
             // send email and password to php file to validate the email 
             $.ajax({

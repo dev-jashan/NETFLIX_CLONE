@@ -15,8 +15,8 @@
                 let action=[...new Set(adventure)];
                 console.log(allMovies);
                 
-               getNetflixAd(action);
-               setAdEvent(action);
+                getNetflixAd(action);
+                setAdEvent(action);
                
             },
             error: function(xhr, status, error){
@@ -27,26 +27,29 @@
 
 
  // get selected movie
- function filterMovies(allMovies,movieId){
-    let findMovie=allMovies.filter(element=>element['ID']==movieId);  
-    return findMovie;
-}
+    function filterMovies(allMovies,movieId){
+        let findMovie=allMovies.filter(element=>element['ID']==movieId);  
+        return findMovie;
+    }
 
-// movie not selected
-function leftMovies(allMovies,movieId){
-    let findMovie=allMovies.filter(element=>element['ID']!=movieId);  
-    return findMovie;
-}
-function disable() {
-    // To get the scroll position of current webpage
-    TopScroll = window.pageYOffset || document.documentElement.scrollTop;
-    LeftScroll = window.pageXOffset || document.documentElement.scrollLeft,
+    // movie not selected
+    function leftMovies(allMovies,movieId){
+        let findMovie=allMovies.filter(element=>element['ID']!=movieId);  
+        return findMovie;
+    }
+
+    // disable scroll
+    function disable() {
+        // To get the scroll position of current webpage
+        TopScroll = window.pageYOffset || document.documentElement.scrollTop;
+        LeftScroll = window.pageXOffset || document.documentElement.scrollLeft,
+        
+        // if scroll happens, set it to the previous value
+        window.onscroll = function() {
+        window.scrollTo(LeftScroll, TopScroll);
+        };
+    }
     
-    // if scroll happens, set it to the previous value
-    window.onscroll = function() {
-    window.scrollTo(LeftScroll, TopScroll);
-    };
-}
     // add youtbe video 
     function embeedVideo(id){
         const  originalContainer=document.querySelector('.playMovie');
@@ -61,41 +64,42 @@ function disable() {
                 
             originalContainer.innerHTML += content;
     }
-// set event lister to  the first netflix drama movie selected
-function setAdEvent(allMovies){
 
-    // select all the containers required
-    const displayMovie=document.querySelector('.playMovieContainer');
-    let titleContainer=document.querySelector('.movieOverview');
-    let close=document.querySelector('.coverSelectedMovie');
-    document.querySelectorAll(".dramaRows").forEach(function(item){
-        item.addEventListener("click", function(e){
+    // set event lister to  the first netflix drama movie selected
+    function setAdEvent(allMovies){
 
-            
-            let movieId=e.target.alt;
-            let movieData=filterMovies(allMovies,movieId);
-            let longOverview=movieData[0]['overview'];
-            let trailer=movieData[0]['trailers'];
-            let shortOverview=truncate(longOverview,150);
-            let showLeftMovies=leftMovies(allMovies,movieId);
+        // select all the containers required
+        const displayMovie=document.querySelector('.playMovieContainer');
+        let titleContainer=document.querySelector('.movieOverview');
+        let close=document.querySelector('.coverSelectedMovie');
+        document.querySelectorAll(".dramaRows").forEach(function(item){
+            item.addEventListener("click", function(e){
 
-            displayMovie.style.display='block';
-            titleContainer.innerHTML=shortOverview;   
-            
-            // funcition declaration
-            embeedVideo(trailer);
-            createLeftMovies(showLeftMovies);
-            disable();
-            selectLeftMovies(showLeftMovies);
-            setMovieId(movieId);
+                
+                let movieId=e.target.alt;
+                let movieData=filterMovies(allMovies,movieId);
+                let longOverview=movieData[0]['overview'];
+                let trailer=movieData[0]['trailers'];
+                let shortOverview=truncate(longOverview,150);
+                let showLeftMovies=leftMovies(allMovies,movieId);
 
-            close.style.display='block';
-            
+                displayMovie.style.display='block';
+                titleContainer.innerHTML=shortOverview;   
+                
+                // funcition declaration
+                embeedVideo(trailer);
+                createLeftMovies(showLeftMovies);
+                disable();
+                selectLeftMovies(showLeftMovies);
+                setMovieId(movieId);
+
+                close.style.display='block';
+                
+            })
         })
-    })
-}
+    }
 
-
+    // get all action posters
     function getNetflixAd(action){
         const  originalContainer=document.querySelector('.movies-Container');
         action.forEach((result) => {
@@ -110,61 +114,63 @@ function setAdEvent(allMovies){
         
     }
 
- // show the movies that are not selected
- function createLeftMovies(cards){
-    const  originalContainer=document.querySelector('.movieCards');
-    originalContainer.innerHTML="";
-    cards.forEach((result) => {
-        const content = `   
-                <div class="rows"   id="rows"  style="position: relative;">
-                    <img id="img" class="img"  style="position: relative;" src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result['ID']}">
-                </div>
-            `;
-            
-        originalContainer.innerHTML += content;
-        
-    }) 
-}
-
- // to select a movie that is not selected before 
- function selectLeftMovies(allMovies){
-    let titleContainer=document.querySelector('.movieOverview');
-    document.querySelectorAll(".rows").forEach(function(item){
-        item.addEventListener("click", function(e){
-            //displayMovie.style.display='block';
-            let movieId=e.target.alt;
-            console.log(movieId)
-            let movieData=filterMovies(allMovies,movieId);
-            let longOverview=movieData[0]['overview'];
-            let trailer=movieData[0]['trailers'];
-            let shortOverview=truncate(longOverview,150);
-            titleContainer.innerHTML=shortOverview;   
-            embeedVideo(trailer);
-            setMovieId(movieId);
-
-        })
-    })
-}
-        // close a movie
-        function closeMovie(){
-            let close=document.querySelector('.coverSelectedMovie');
-            let closeMovie=document.querySelector('.playMovieContainer');
-            const  originalContainer=document.querySelector('.playMovie');
-            close.addEventListener('click',()=>{
-                close.style.display='none';
-                closeMovie.style.display='none';
-                window.onscroll = function() {
-                    window.scrollTo(document.documentElement.scrollLeft, document.documentElement.scrollTop);
-                };
-                originalContainer.innerHTML="";
+    // show the movies that are not selected
+    function createLeftMovies(cards){
+        const  originalContainer=document.querySelector('.movieCards');
+        originalContainer.innerHTML="";
+        cards.forEach((result) => {
+            const content = `   
+                    <div class="rows"   id="rows"  style="position: relative;">
+                        <img id="img" class="img"  style="position: relative;" src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result['ID']}">
+                    </div>
+                `;
                 
-            })
+            originalContainer.innerHTML += content;
             
-        }
-        function setMovieId(id){
-            let setId=document.getElementById('movieId');
-            setId.innerHTML=id;
-        }
+        }) 
+    }
+
+    // to select a movie that is not selected before 
+    function selectLeftMovies(allMovies){
+        let titleContainer=document.querySelector('.movieOverview');
+        document.querySelectorAll(".rows").forEach(function(item){
+            item.addEventListener("click", function(e){
+                //displayMovie.style.display='block';
+                let movieId=e.target.alt;
+                console.log(movieId)
+                let movieData=filterMovies(allMovies,movieId);
+                let longOverview=movieData[0]['overview'];
+                let trailer=movieData[0]['trailers'];
+                let shortOverview=truncate(longOverview,150);
+                titleContainer.innerHTML=shortOverview;   
+                embeedVideo(trailer);
+                setMovieId(movieId);
+
+            })
+        })
+    }
+    // close a movie
+    function closeMovie(){
+        let close=document.querySelector('.coverSelectedMovie');
+        let closeMovie=document.querySelector('.playMovieContainer');
+        const  originalContainer=document.querySelector('.playMovie');
+        close.addEventListener('click',()=>{
+            close.style.display='none';
+            closeMovie.style.display='none';
+            window.onscroll = function() {
+                window.scrollTo(document.documentElement.scrollLeft, document.documentElement.scrollTop);
+            };
+            originalContainer.innerHTML="";
+            
+        })
+        
+    }
+
+    // set movie id
+    function setMovieId(id){
+        let setId=document.getElementById('movieId');
+        setId.innerHTML=id;
+    }
     // if the overview is bigger then replace words with ...
     function truncate(str,n){
       return str?.length > n ? str.substr(0,n-1) + '...' :str;
@@ -181,11 +187,10 @@ function setAdEvent(allMovies){
         } else {
             navbar.classList.remove("sticky");
         }
-        
-        
     }
+
      // add movie to download
-     function addToDownload(){
+    function addToDownload(){
         let downloadBtn=document.querySelector('.downloadBtn');
         let getMovieId=document.querySelector('.movieId');
 
@@ -210,6 +215,7 @@ function setAdEvent(allMovies){
         })
     }
 
+    // send the list of the movies to AJAX
     function addToList(){
         let listBtn=document.querySelector('.listBtn');
         let getMovieId=document.querySelector('.movieId');
@@ -235,6 +241,7 @@ function setAdEvent(allMovies){
         })
 
     }
+    
     //enable and disable sidebar 
     function sidebarLogic(){
         const sidenavContainer=document.querySelector('.sideNavContainer');

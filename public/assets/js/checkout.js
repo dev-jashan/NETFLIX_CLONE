@@ -74,7 +74,7 @@
                     document.querySelector(".loader").classList.add("spinner");
                     document.querySelector(".body").style.backgroundColor = "black";
 
-                    // when data is received then redirect user to the main page
+                    //when data is received then redirect user to the main page
                     if(data){
                         setTimeout(() => {
                             window.location.replace('http://127.0.0.1:8080/php/NETFLIX_CLONE/main/index');
@@ -111,10 +111,6 @@
         console.log('this is the checkout page');
         setEventListeners();
     }
-    
-
-
-
 
     document.addEventListener("DOMContentLoaded", function (){
         init();

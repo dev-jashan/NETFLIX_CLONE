@@ -28,10 +28,12 @@
       
         return findMovie;
     }
+
     function filterMovies(allMovies,movieId){
         let findMovie=allMovies.filter(element=>element[0]['ID']==movieId);  
         return findMovie;
     }
+
     function disable() {
         // To get the scroll position of current webpage
         TopScroll = window.pageYOffset || document.documentElement.scrollTop;
@@ -42,6 +44,7 @@
             window.scrollTo(LeftScroll, TopScroll);
         };
     }
+
     // add youtbe video 
     function embeedVideo(id) {
         const originalContainer = document.querySelector('.playMovie');
@@ -57,8 +60,6 @@
         originalContainer.innerHTML += content;
     }
 
-    // add data to the list
-
     // set event lister to  the first netflix drama movie selected
     function setDramaEvent(allMovies) {
 
@@ -70,8 +71,7 @@
             item.addEventListener("click", function(e) {
 
 
-                let movieId = e.target.alt;
-                
+                let movieId = e.target.alt;  
                 let movieData = filterMovies(allMovies, movieId);
                 
                 console.log(movieData);
@@ -174,9 +174,7 @@
         })
 
     }
-   // get selected movie
-
-
+   
     // if the overview is bigger then replace words with ...
     function truncate(str, n) {
         return str ?.length > n ? str.substr(0, n - 1) + '...' : str;
@@ -193,7 +191,6 @@
         } else {
             navbar.classList.remove("sticky");
         }
-
 
     }
 
@@ -234,9 +231,6 @@
         console.log('this is the main page of the application');
         init();
         sidebarLogic();
-
-
-
     });
 
 

@@ -16,13 +16,21 @@
 </head>
 <body style="background-color: black;"> 
 
+    <!-- create nav -->
     <nav id="nav">
         <div class="sideNavContainer">
             <span class="openSideBar" style="color: white;">☰</span>
         </div>
         <p class="genre">Dramas</p>
+        <div class="searchContainer">
+            <a href="<?= $root_url?>search/index"><i class="fa fa-search search"></i></a>
+        </div>
+        <div class="settingContainer">
+            <a href="<?= $root_url?>logout/index" style="display: none;"><span class="logout">Logout</span></a>
+        </div>
     </nav>
 
+    <!-- create sidebar -->
     <div class="backdrop"></div>
     <div class="sidebar">
         <div class="side_profile">

@@ -40,15 +40,16 @@
     </style>
 </head>
 <body style="background-color: white;" class="body">
-<div class="loader"></div>
-<div class="netflixFrontContainer">
-        <div class="netflixLogo">
-            <img src="<?= $root_url?>assets/img/netflxLogo.jpg" alt="" width="100%">
-        </div>
-        <nav class="netflixNav">
-            <div class="signup">
-                <a  href="<?= $root_url?>login/index" class="signupBtn">Sign_in</a>
+    <!-- nav  -->
+    <div class="loader"></div>
+    <div class="netflixFrontContainer">
+            <div class="netflixLogo">
+                <img src="<?= $root_url?>assets/img/netflxLogo.jpg" alt="" width="100%">
             </div>
-        </nav>   
-    </div>
+            <nav class="netflixNav">
+                <div class="signup">
+                    <a  href="<?= $root_url?>login/index" class="signupBtn">Sign_in</a>
+                </div>
+            </nav>   
+        </div>
     

@@ -22,6 +22,7 @@ class DownloadController extends Controller{
         $this->View->renderDownload('download/index');
     }  
 
+    // store your downloads    
     public static function yourDownload(){
         if(isset($_POST['data'])){
             $downloadList=$_POST['data'];
@@ -30,15 +31,15 @@ class DownloadController extends Controller{
             print_r($movieId);
         }
     }  
+
     public static function sendDownload(){
         $all_movies=array();
-        $get_all_movies=MainModel::getAllMovies();
         $get_all_downloads=DownloadModel::getDownload();
-        $check_download=DownloadModel::checkDownload();
+        
        
         foreach ($get_all_downloads as $value) {
             //print_r($value['download_id']);
-            $get=DownloadModel::get($value['download_id']);
+            $get=DownloadModel::searchMovies($value['download_id']);
             //print_r($get);
             array_push($all_movies,$get);
           }

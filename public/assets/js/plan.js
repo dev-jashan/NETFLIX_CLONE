@@ -19,7 +19,7 @@
                     planArr.push(rb.value);
                     localStorage.setItem('plan', planArr); 
 
-                    window.history.forward();
+                    
 
                     $(function(){
                         $("body").fadeOut(1000,function(){
@@ -38,6 +38,7 @@
             $("body").fadeIn(1000);
         })
     }
+    
     document.addEventListener("DOMContentLoaded", function (){
         init();
     });

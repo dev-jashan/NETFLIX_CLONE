@@ -41,7 +41,7 @@ class RegisterController extends Controller{
             $userCheckoutData=json_decode($data,true);
             
             // print all the user data in the console
-            print_r($userCheckoutData);
+            //print_r($userCheckoutData);
 
             $user_name=$userCheckoutData[3];
             $user_email=$userCheckoutData[1];
@@ -57,8 +57,16 @@ class RegisterController extends Controller{
             
             // if their is duplicate then dont register the new user
             RegisterModel::createUser($user_name,$user_email,$user_cardnum,$user_cvv,$hashed_pass,$user_plan,$card_monthexp,$card_yearexp);
-           
-            
+            $user_id=RegisterModel::getUserID($user_email);
+            print_r($user_id);
+            foreach($user_id as $key => $value){
+
+                $valid_id=$value["userID"];
+    
+                $_SESSION['userId']=$valid_id;
+                print_r($valid_id);
+                
+            }
         }
 
         if(isset($_POST['checkData'])){

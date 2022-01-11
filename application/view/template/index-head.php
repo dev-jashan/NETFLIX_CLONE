@@ -14,7 +14,7 @@
     
 </head>
 <body>
-    
+    <!-- create nav -->
     <div class="netflixFrontContainer">
         <div class="netflixLogo">
             <img src="<?= $root_url?>assets/img/netflxLogo.jpg" alt="" width="100%">

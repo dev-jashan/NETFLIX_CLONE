@@ -1,0 +1,22 @@
+
+nav{
+    background-color: rgba(0, 0, 0, 0.644);
+    display: flex;
+    position: fixed;
+    width: 100%;
+    padding: 1.3%;
+    
+}
+a{
+    font-size: 180%;
+}
+
+.inputContainer{
+    margin-left: 40%;
+}
+label{
+    font-size: 150%;
+}
+input{
+    font-size: 150%;
+}

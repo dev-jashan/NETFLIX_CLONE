@@ -11,4 +11,5 @@ class LoginModel{
       return DatabaseFactory::getFactory()->query('SELECT * from netflix_users WHERE userEmail=?',$user_email)->fetchAll();
    }
   
+
 }

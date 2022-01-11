@@ -113,14 +113,28 @@ class MainModel{
       return DatabaseFactory::getFactory()->query('SELECT * FROM all_netflix  WHERE genre_id=?',99)->fetchAll();
    }
 
-   // to get all the list of the user
-   public static function getuserList()
-   {
-      return DatabaseFactory::getFactory()->query('SELECT * FROM netflix_list  GROUP BY movie_ID')->fetchAll();
-   }
+   
    // check if their is noting adding in the list
    public static function checkList()
    {
       return DatabaseFactory::getFactory()->query('SELECT * FROM netflix_list')->numRows();
+   }
+
+   //search for a list in all the moves 
+   public static function searchMoviesList($id)
+   {
+      return DatabaseFactory::getFactory()->query('SELECT * FROM all_netflix  WHERE ID=? GROUP BY name',$id)->fetchAll();
+   }
+
+   // add all the videos liked by the user
+   public static function createLiked($movieId)
+   {
+      return DatabaseFactory::getFactory()->query("INSERT INTO netflix_liked (like_id,UserID) VALUES (?,?)",$movieId,$_SESSION['userId']);
+   }
+
+   // get all the videos liked by the user
+   public static function getuserLiked()
+   {
+      return DatabaseFactory::getFactory()->query('SELECT * FROM netflix_liked WHERE UserID=?  GROUP BY like_id',$_SESSION['userId'])->fetchAll();
    }
 }

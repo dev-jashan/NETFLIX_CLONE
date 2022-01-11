@@ -3,10 +3,14 @@
 namespace application\controller;
 use application\core\Controller;
 use application\model\MainModel;
+use application\model\ListModel;
+
 
 
 require_once '..\application\core\Controller.php';
 require_once '..\application\model\MainModel.php';
+require_once '..\application\model\ListModel.php';
+
 
 
 class MainController extends Controller{
@@ -24,10 +28,12 @@ class MainController extends Controller{
         
     }
 
+    // to get all the movies of the netflix
     public static function allNetfix(){
         
         // all variables declared;
         $all_movies=array();
+        $list=array();
         $get_all_movies=MainModel::getAllMovies();
         $get_adventure=MainModel::getAdventure();
         $get_action=MainModel::getAction();
@@ -46,19 +52,42 @@ class MainController extends Controller{
         $get_animation=MainModel::getAnimation();
         $get_mystery=MainModel::getMystery();
         $get_documentaries=MainModel::getDocumentaries();
-        $getUserList=MainModel::getuserList();
-        $checkList=MainModel::checkList();
+        $getUserList=ListModel::getuserList();
+        $get_liked=MainModel::getuserLiked();
 
-        //print_r();
-        // push all the movies with differet genres
+        foreach ($getUserList as $value) {
+            
+            $get=MainModel::searchMoviesList($value['movie_ID']);
+            array_push($list,$get);
+        }
+        
         array_push($all_movies,$get_all_movies,$get_adventure,$get_action,$get_thriller,$get_comedy,$get_romance,$get_horror
                 ,  $get_originals,$get_science,$get_history,$get_drama,$get_tv_science,$get_tv_action,$get_tv_crime
-                ,$get_tv_family,$get_animation,$get_mystery,$get_documentaries,$getUserList,$checkList );
+                ,$get_tv_family,$get_animation,$get_mystery,$get_documentaries,$list,$get_liked );
         
-        // encode the array to json and send to frontend
+        
         echo json_encode($all_movies); 
-
-        //print_r($get_movies);
     }
-    
+
+    // get all the liked videos for the javascript and send it to the db
+    public static function sendLiked(){
+        if(isset($_POST['data'])){
+            $liked_list=$_POST['data'];
+            $movieId=json_decode($liked_list,true);
+            MainModel::createLiked($movieId);
+            print_r($movieId);
+        }
+
+    }
+
+    // retrieve all the liked videos from the db
+    public static function getLiked(){
+        if(isset($_POST['data'])){
+            $liked_list=$_POST['data'];
+            $movieId=json_decode($liked_list,true);
+            MainModel::createLiked($movieId);
+            print_r($movieId);
+        }
+
+    }
 }

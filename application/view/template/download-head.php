@@ -15,7 +15,7 @@
     <script src="<?= $root_url?>assets/js/download.js"></script>
 </head>
 <body style="background-color: black;"> 
-
+    <!-- create nav -->
     <nav id="nav">
         <div class="sideNavContainer">
             <span class="openSideBar" style="color: white;">☰</span>
@@ -23,6 +23,7 @@
         <p class="genre">Download</p>
     </nav>
 
+    <!-- create sidebar -->
     <div class="backdrop"></div>
     <div class="sidebar">
         <div class="side_profile">

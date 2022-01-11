@@ -21,7 +21,5 @@ class PlanController extends Controller{
         $this->View->renderPlan('plan/index');
         
     }
-
-    
     
 }

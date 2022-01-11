@@ -9,12 +9,12 @@ class DownloadModel{
    // create list in the database
     public static function createDownload($movieId)
    {
-      return DatabaseFactory::getFactory()->query("INSERT INTO netflix_download (download_id) VALUES (?)",$movieId);
+      return DatabaseFactory::getFactory()->query("INSERT INTO netflix_download (download_id,UserID) VALUES (?,?)",$movieId,$_SESSION['userId']);
    }
 
    public static function getDownload()
    {
-      return DatabaseFactory::getFactory()->query('SELECT * FROM netflix_download  GROUP BY download_id')->fetchAll();
+      return DatabaseFactory::getFactory()->query('SELECT * FROM netflix_download  WHERE UserID=? GROUP BY download_id',$_SESSION['userId'])->fetchAll();
    }
    // check if their is noting adding in the list
    public static function checkDownload()
@@ -22,7 +22,7 @@ class DownloadModel{
       return DatabaseFactory::getFactory()->query('SELECT * FROM netflix_download')->numRows();
    }
 
-   public static function get($id)
+   public static function searchMovies($id)
    {
       return DatabaseFactory::getFactory()->query('SELECT * FROM all_netflix  WHERE ID=? GROUP BY name',$id)->fetchAll();
    }

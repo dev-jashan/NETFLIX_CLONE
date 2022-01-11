@@ -15,14 +15,14 @@
     
 </head>
 <body style="background-color: black;">
-
-<div class="netflixFrontContainer" style="background-color: black;">
-        <div class="netflixLogo">
-            <img src="<?= $root_url?>assets/img/netBlack.jpg" alt="" width="100%">
-        </div>
-        <nav class="netflixNav">
-            <div class="signup">
-                <a href="<?= $root_url?>login/index" class="signupBtn">Sign_in</a>
+    <!-- create nav -->
+    <div class="netflixFrontContainer" style="background-color: black;">
+            <div class="netflixLogo">
+                <img src="<?= $root_url?>assets/img/netBlack.jpg" alt="" width="100%">
             </div>
-        </nav>   
-    </div>
+            <nav class="netflixNav">
+                <div class="signup">
+                    <a href="<?= $root_url?>login/index" class="signupBtn">Sign_in</a>
+                </div>
+            </nav>   
+        </div>

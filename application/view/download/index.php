@@ -16,6 +16,7 @@
     </div>
 </div>
 
+
 <div class="noDownloadContainer" style="display: none;">
     <img src="<?= $root_url?>assets/img/netflix_donwload.PNG" alt="">
     <div class="backToHome">
@@ -24,6 +25,8 @@
 </div>
 <div class="coverSelectedMovie" id="coverSelectedMovie"></div>
 <div class="accessable"></div>
+
+<!-- create poster -->
 <div class="movies-Container">
     <div class="drama-movies"></div>
 </div>

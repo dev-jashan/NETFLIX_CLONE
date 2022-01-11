@@ -1,3 +1,4 @@
+<!-- create form -->
 <div class="registerContainer">
     <div class="col-50">
         <span id="lblError" style="color: red"></span>

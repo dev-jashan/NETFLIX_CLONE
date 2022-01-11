@@ -40,14 +40,15 @@
 
     </style>
 </head>
-<body style="background-color: black;" class="body">
+    <!-- create nav -->
+    <body style="background-color: black;" class="body">
 
-<div class="netflixFrontContainer" style="background-color: black;">
-    <div class="backtoIndexContainer">
-        <a  href="<?= $root_url?>index/index" class="backtoIndex" style="color: white;text-decoration: none;" onclick="hide()">🡰</a>
+    <div class="netflixFrontContainer" style="background-color: black;">
+        <div class="backtoIndexContainer">
+            <a  href="<?= $root_url?>index/index" class="backtoIndex" style="color: white;text-decoration: none;" onclick="hide()">🡰</a>
+        </div>
+        <div class="netflixLogo">
+            <img src="<?= $root_url?>assets/img/netBlack.jpg" alt="" width="100%">
+        </div>
     </div>
-    <div class="netflixLogo">
-        <img src="<?= $root_url?>assets/img/netBlack.jpg" alt="" width="100%">
-    </div>
-</div>
-<div class="loader"></div>
+    <div class="loader"></div>

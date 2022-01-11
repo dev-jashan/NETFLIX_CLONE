@@ -1,5 +1,6 @@
 
 <div class="checkoutContainer">
+    <!-- to show images of all the cards accepted -->
     <div class="col-50">
         <h1>Setup your debit or credit</h1>
         <h1>Card</h1>
@@ -9,11 +10,14 @@
             <i class="fa fa-cc-mastercard" style="color:red;"></i>
             <i class="fa fa-cc-discover" style="color:orange;"></i>
         </div>
+
+        <!-- user input  -->
         <label for="cname">Name on Card</label>
         <input type="text" id="name" name="cardname"  onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)" >
         <label for="ccnum">Credit card number</label>
         <input type="text" id="ccnum" name="cardnumber"  maxlength="16" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/[^0-9]/g, '$1');">
         <label for="expmonth">Exp Month</label>
+
         <!-- <input type="text" id="expmonth" name="expmonth" placeholder="September"> -->
         <select name="month" id="months">
             <option value="Jan">Jan</option>
@@ -55,6 +59,8 @@
             </div>
         </div>
         </div>
+
+        <!-- creating the checkout button --> 
         <div class="checkoutBtnContainer">
             <button class="checkoutBtn" id="checkoutBtn">Start Membership</button>
         </div>

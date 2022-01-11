@@ -13,10 +13,9 @@
                 let allMovies=movies[0];                
                 let drama=movies[9].concat(movies[10]);
                 console.log(allMovies);
-                // send data to their respective funcitions
-                //getAllMovies(allMovies);
-               getNetflixDrama(drama);
-               setDramaEvent(drama);
+                
+                getNetflixDrama(drama);
+                setDramaEvent(drama);
                
             },
             error: function(xhr, status, error){
@@ -26,27 +25,28 @@
     }
 
 
- // get selected movie
- function filterMovies(allMovies,movieId){
-    let findMovie=allMovies.filter(element=>element['ID']==movieId);  
-    return findMovie;
-}
+    // get selected movie
+    function filterMovies(allMovies,movieId){
+        let findMovie=allMovies.filter(element=>element['ID']==movieId);  
+        return findMovie;
+    }
 
-// movie not selected
-function leftMovies(allMovies,movieId){
-    let findMovie=allMovies.filter(element=>element['ID']!=movieId);  
-    return findMovie;
-}
-function disable() {
-    // To get the scroll position of current webpage
-    TopScroll = window.pageYOffset || document.documentElement.scrollTop;
-    LeftScroll = window.pageXOffset || document.documentElement.scrollLeft,
-    
-    // if scroll happens, set it to the previous value
-    window.onscroll = function() {
-    window.scrollTo(LeftScroll, TopScroll);
-    };
-}
+    // movie not selected
+    function leftMovies(allMovies,movieId){
+        let findMovie=allMovies.filter(element=>element['ID']!=movieId);  
+        return findMovie;
+    }
+
+    function disable() {
+        // To get the scroll position of current webpage
+        TopScroll = window.pageYOffset || document.documentElement.scrollTop;
+        LeftScroll = window.pageXOffset || document.documentElement.scrollLeft,
+        
+        // if scroll happens, set it to the previous value
+        window.onscroll = function() {
+        window.scrollTo(LeftScroll, TopScroll);
+        };
+    }
     // add youtbe video 
     function embeedVideo(id){
         const  originalContainer=document.querySelector('.playMovie');
@@ -61,64 +61,65 @@ function disable() {
                 
             originalContainer.innerHTML += content;
     }
-// set event lister to  the first netflix drama movie selected
-function setDramaEvent(allMovies){
+    // set event lister to  the first netflix drama movie selected
+    function setDramaEvent(allMovies){
 
-    // select all the containers required
-    const displayMovie=document.querySelector('.playMovieContainer');
-    let titleContainer=document.querySelector('.movieOverview');
-    let close=document.querySelector('.coverSelectedMovie');
-    document.querySelectorAll(".dramaRows").forEach(function(item){
-        item.addEventListener("click", function(e){
+        // select all the containers required
+        const displayMovie=document.querySelector('.playMovieContainer');
+        let titleContainer=document.querySelector('.movieOverview');
+        let close=document.querySelector('.coverSelectedMovie');
+        document.querySelectorAll(".dramaRows").forEach(function(item){
+            item.addEventListener("click", function(e){
 
-            
-            let movieId=e.target.alt;
-            let movieData=filterMovies(allMovies,movieId);
-            let longOverview=movieData[0]['overview'];
-            let trailer=movieData[0]['trailers'];
-            let shortOverview=truncate(longOverview,150);
-            let showLeftMovies=leftMovies(allMovies,movieId);
+                
+                let movieId=e.target.alt;
+                let movieData=filterMovies(allMovies,movieId);
+                let longOverview=movieData[0]['overview'];
+                let trailer=movieData[0]['trailers'];
+                let shortOverview=truncate(longOverview,150);
+                let showLeftMovies=leftMovies(allMovies,movieId);
 
-            displayMovie.style.display='block';
-            titleContainer.innerHTML=shortOverview;   
-            
-            // funcition declaration
-            embeedVideo(trailer);
-            createLeftMovies(showLeftMovies);
-            disable();
-            selectLeftMovies(showLeftMovies);
-            setMovieId(movieId);
-            close.style.display='block';
-            
+                displayMovie.style.display='block';
+                titleContainer.innerHTML=shortOverview;   
+                
+                // funcition declaration
+                embeedVideo(trailer);
+                createLeftMovies(showLeftMovies);
+                disable();
+                selectLeftMovies(showLeftMovies);
+                setMovieId(movieId);
+                close.style.display='block';
+                
+            })
         })
-    })
-}
-function addToList(){
-    let listBtn=document.querySelector('.listBtn');
-    let getMovieId=document.querySelector('.movieId');
+    }
+    function addToList(){
+        let listBtn=document.querySelector('.listBtn');
+        let getMovieId=document.querySelector('.movieId');
 
-    listBtn.addEventListener("click", function(){
-        console.log(getMovieId.alt);
-        console.log('list button is clicked');
-        let userData = JSON.stringify(getMovieId.innerHTML);
-        console.log(userData);
-        $.ajax({
-        
-            type: "POST",
-            url: 'http://127.0.0.1:8080/php/NETFLIX_CLONE/list/yourList',
-            data: {data : userData},
-            success: function(data){
-                console.log(data);
-               
-            },
-            error: function(xhr, status, error){
-                console.error(xhr);
-            }
-        });
-    })
+        listBtn.addEventListener("click", function(){
+            console.log(getMovieId.alt);
+            console.log('list button is clicked');
+            let userData = JSON.stringify(getMovieId.innerHTML);
+            console.log(userData);
+            $.ajax({
+            
+                type: "POST",
+                url: 'http://127.0.0.1:8080/php/NETFLIX_CLONE/list/yourList',
+                data: {data : userData},
+                success: function(data){
+                    console.log(data);
+                
+                },
+                error: function(xhr, status, error){
+                    console.error(xhr);
+                }
+            });
+        })
 
-}
+    }
 
+    // create netfix posters for drama
     function getNetflixDrama(drama){
         const  originalContainer=document.querySelector('.movies-Container');
         drama.forEach((result) => {
@@ -133,81 +134,83 @@ function addToList(){
         
     }
 
- // show the movies that are not selected
- function createLeftMovies(cards){
-    const  originalContainer=document.querySelector('.movieCards');
-    originalContainer.innerHTML="";
-    cards.forEach((result) => {
-        const content = `   
-                <div class="rows"   id="rows"  style="position: relative;">
-                    <img id="img" class="img"  style="position: relative;" src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result['ID']}">
-                </div>
-            `;
-            
-        originalContainer.innerHTML += content;
-        
-    }) 
-}
- // add movie to download
- function addToDownload(){
-    let downloadBtn=document.querySelector('.downloadBtn');
-    let getMovieId=document.querySelector('.movieId');
-
-    downloadBtn.addEventListener("click", function(){
-        console.log(getMovieId.innerHTML);
-        console.log('download button is clicked');
-        let userData = JSON.stringify(getMovieId.innerHTML);
-        console.log(userData);
-        $.ajax({
-        
-            type: "POST",
-            url: 'http://127.0.0.1:8080/php/NETFLIX_CLONE/download/yourDownload',
-            data: {data : userData},
-            success: function(data){
-                console.log(data);
-               
-            },
-            error: function(xhr, status, error){
-                console.error(xhr);
-            }
-        });
-    })
-}
-
- // to select a movie that is not selected before 
- function selectLeftMovies(allMovies){
-    let titleContainer=document.querySelector('.movieOverview');
-    document.querySelectorAll(".rows").forEach(function(item){
-        item.addEventListener("click", function(e){
-            //displayMovie.style.display='block';
-            let movieId=e.target.alt;
-            console.log(movieId)
-            let movieData=filterMovies(allMovies,movieId);
-            let longOverview=movieData[0]['overview'];
-            let trailer=movieData[0]['trailers'];
-            let shortOverview=truncate(longOverview,150);
-            titleContainer.innerHTML=shortOverview;   
-            setMovieId(movieId);
-            embeedVideo(trailer);
-        })
-    })
-}
-        // close a movie
-        function closeMovie(){
-            let close=document.querySelector('.coverSelectedMovie');
-            let closeMovie=document.querySelector('.playMovieContainer');
-            const  originalContainer=document.querySelector('.playMovie');
-            close.addEventListener('click',()=>{
-                close.style.display='none';
-                closeMovie.style.display='none';
-                window.onscroll = function() {
-                    window.scrollTo(document.documentElement.scrollLeft, document.documentElement.scrollTop);
-                };
-                originalContainer.innerHTML="";
+    // show the movies that are not selected
+    function createLeftMovies(cards){
+        const  originalContainer=document.querySelector('.movieCards');
+        originalContainer.innerHTML="";
+        cards.forEach((result) => {
+            const content = `   
+                    <div class="rows"   id="rows"  style="position: relative;">
+                        <img id="img" class="img"  style="position: relative;" src="https://image.tmdb.org/t/p/original${result['poster']}" width="200px" height="200px" alt="${result['ID']}">
+                    </div>
+                `;
                 
-            })
+            originalContainer.innerHTML += content;
             
-        }
+        }) 
+    }
+
+    // add movie to download
+    function addToDownload(){
+        let downloadBtn=document.querySelector('.downloadBtn');
+        let getMovieId=document.querySelector('.movieId');
+
+        downloadBtn.addEventListener("click", function(){
+            console.log(getMovieId.innerHTML);
+            console.log('download button is clicked');
+            let userData = JSON.stringify(getMovieId.innerHTML);
+            console.log(userData);
+            $.ajax({
+            
+                type: "POST",
+                url: 'http://127.0.0.1:8080/php/NETFLIX_CLONE/download/yourDownload',
+                data: {data : userData},
+                success: function(data){
+                    console.log(data);
+                
+                },
+                error: function(xhr, status, error){
+                    console.error(xhr);
+                }
+            });
+        })
+    }
+
+    // to select a movie that is not selected before 
+    function selectLeftMovies(allMovies){
+        let titleContainer=document.querySelector('.movieOverview');
+        document.querySelectorAll(".rows").forEach(function(item){
+            item.addEventListener("click", function(e){
+                //displayMovie.style.display='block';
+                let movieId=e.target.alt;
+                console.log(movieId)
+                let movieData=filterMovies(allMovies,movieId);
+                let longOverview=movieData[0]['overview'];
+                let trailer=movieData[0]['trailers'];
+                let shortOverview=truncate(longOverview,150);
+                titleContainer.innerHTML=shortOverview;   
+                setMovieId(movieId);
+                embeedVideo(trailer);
+            })
+        })
+    }
+
+    // close a movie
+    function closeMovie(){
+        let close=document.querySelector('.coverSelectedMovie');
+        let closeMovie=document.querySelector('.playMovieContainer');
+        const  originalContainer=document.querySelector('.playMovie');
+        close.addEventListener('click',()=>{
+            close.style.display='none';
+            closeMovie.style.display='none';
+            window.onscroll = function() {
+                window.scrollTo(document.documentElement.scrollLeft, document.documentElement.scrollTop);
+            };
+            originalContainer.innerHTML="";
+            
+        })
+        
+    }
 
     // if the overview is bigger then replace words with ...
     function truncate(str,n){
@@ -224,9 +227,7 @@ function addToList(){
             navbar.classList.add("sticky")
         } else {
             navbar.classList.remove("sticky");
-        }
-        
-        
+        }    
     }
 
     //enable and disable sidebar 

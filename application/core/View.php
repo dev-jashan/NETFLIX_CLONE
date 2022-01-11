@@ -91,6 +91,8 @@ class View{
         require Config::get('PATH_VIEW') . $filename . '.php';
         require Config::get('PATH_VIEW') . 'template/main-foot.php';
     }
+
+    //to show main netfix drama
     public function renderDrama($filename, $data = null)                     
     {
         if ($data) {
@@ -103,6 +105,8 @@ class View{
         require Config::get('PATH_VIEW') . $filename . '.php';
         require Config::get('PATH_VIEW') . 'template/drama-foot.php';
     }
+
+    //to show main netfix thrill
     public function renderThrill($filename, $data = null)                     
     {
         if ($data) {
@@ -116,6 +120,7 @@ class View{
         require Config::get('PATH_VIEW') . 'template/thrill-foot.php';
     }
 
+    //to show main netfix horrror
     public function renderHorror($filename, $data = null)                     
     {
         if ($data) {
@@ -128,6 +133,8 @@ class View{
         require Config::get('PATH_VIEW') . $filename . '.php';
         require Config::get('PATH_VIEW') . 'template/horror-foot.php';
     }
+
+    //to show main netfix tv
     public function renderTv($filename, $data = null)                     
     {
         if ($data) {
@@ -140,6 +147,8 @@ class View{
         require Config::get('PATH_VIEW') . $filename . '.php';
         require Config::get('PATH_VIEW') . 'template/tv-foot.php';
     }
+
+    //to show main netfix romantic
     public function renderRomantic($filename, $data = null)                     
     {
         if ($data) {
@@ -152,6 +161,8 @@ class View{
         require Config::get('PATH_VIEW') . $filename . '.php';
         require Config::get('PATH_VIEW') . 'template/romantic-foot.php';
     }
+
+    //to show main netfix action
     public function renderAction($filename, $data = null)                     
     {
         if ($data) {
@@ -164,6 +175,8 @@ class View{
         require Config::get('PATH_VIEW') . $filename . '.php';
         require Config::get('PATH_VIEW') . 'template/action-foot.php';
     }
+
+    //to show main netfix doc
     public function renderDoc($filename, $data = null)                     
     {
         if ($data) {
@@ -176,6 +189,8 @@ class View{
         require Config::get('PATH_VIEW') . $filename . '.php';
         require Config::get('PATH_VIEW') . 'template/doc-foot.php';
     }
+
+    //to show main netfix comedy
     public function renderComedy($filename, $data = null)                     
     {
         if ($data) {
@@ -188,6 +203,9 @@ class View{
         require Config::get('PATH_VIEW') . $filename . '.php';
         require Config::get('PATH_VIEW') . 'template/comedy-foot.php';
     }
+
+
+    //to show main netfix download
     public function renderDownload($filename, $data = null)                     
     {
         if ($data) {
@@ -199,5 +217,19 @@ class View{
         require Config::get('PATH_VIEW') . 'template/download-head.php';
         require Config::get('PATH_VIEW') . $filename . '.php';
         require Config::get('PATH_VIEW') . 'template/download-foot.php';
+    }
+
+    //to show main netfix search
+    public function renderSearch($filename, $data = null)                     
+    {
+        if ($data) {
+            foreach ($data as $key => $value) {
+                $this->{$key} = $value;
+            }
+        }
+
+        require Config::get('PATH_VIEW') . 'template/search-head.php';
+        require Config::get('PATH_VIEW') . $filename . '.php';
+        require Config::get('PATH_VIEW') . 'template/search-foot.php';
     }
 }
